@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-
 export default class FirstComponent extends Component {
+
+
+//This class does nothing.
 
 constructor(props) {
     super(props)

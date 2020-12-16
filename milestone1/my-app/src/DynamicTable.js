@@ -1,5 +1,9 @@
 import React from 'react';
 
+//https://www.pluralsight.com/guides/creating-dynamic-editable-tables-with-reactjs
+//This class does something, its the first table you see in the react page. I think I need to re do it because it doesnt use hook and
+//it doesnt look that nice.
+
 export default class DynamicTable extends React.Component {
 
 

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+//This was playing around with objects
+//https://dev.to/abdulbasit313/an-easy-way-to-create-a-customize-dynamic-table-in-react-js-3igg
+//https://codepen.io/Basit600/pen/JzeZxo?editors=0010
 class Table extends Component {
    constructor(props) {
       super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
