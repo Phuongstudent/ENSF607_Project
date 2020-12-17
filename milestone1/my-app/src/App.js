@@ -4,6 +4,7 @@ import './App.css';
 import FirstComponent from './FirstComponent';
 import Table from './Table';
 import DynamicTable from './DynamicTable';
+import CourseInformation from './CourseInformation.js';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <FirstComponent displaytext="First Component Data"/>
+        <CourseInformation displaytext="DynamicTable"/>
         <DynamicTable displaytext="DynamicTable"/>
         <Table displaytext="Table"/>
       </div>
