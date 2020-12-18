@@ -51,11 +51,19 @@ export default class CourseSectionInformation extends React.Component {
                                 />
                             </td>
                             <td>
-                                <input 
+                                {/* <input 
                                     name = "lectureStudentsPerSupervisor"
                                     value = {this.state.lectureStudentsPerSupervisor}
                                     onChange = {this.handleChange}                                  
-                                />
+                                /> */}
+                                <select name="lectureStudentsPerSupervisor" id="lectureStudentsPerSupervisor">
+                                <option value="A0">  </option>
+                                <option value="A1"> lt 5 </option>
+                                <option value="A2">5-10 </option>
+                                <option value="A3">10-20</option>
+                                <option value="A4">20-50</option>
+                                <option value="A5"> gt 50 </option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -75,11 +83,19 @@ export default class CourseSectionInformation extends React.Component {
                                 />
                             </td>
                             <td>
-                                <input 
+                            <select name="tutorialStudentsPerSupervisor" id="tutorialStudentsPerSupervisor">
+                            <option value="A0">  </option>
+                            <option value="A1"> lt 5 </option>
+                            <option value="A2">5-10 </option>
+                            <option value="A3">10-20</option>
+                            <option value="A4">20-50</option>
+                            <option value="A5"> gt 50 </option>
+                            </select>
+                                {/* <input 
                                     name = "tutorialStudentsPerSupervisor"
                                     value = {this.state.tutorialStudentsPerSupervisor}
                                     onChange = {this.handleChange}                                  
-                                />
+                                /> */}
                             </td>
                         </tr>
                         <tr>
@@ -99,11 +115,19 @@ export default class CourseSectionInformation extends React.Component {
                                 />
                             </td>
                             <td>
-                                <input 
+                            <select name="labStudentsPerSupervisor" id="labStudentsPerSupervisor">
+                            <option value="A0">  </option>
+                            <option value="A1"> lt 5 </option>
+                            <option value="A2">5-10 </option>
+                            <option value="A3">10-20</option>
+                            <option value="A4">20-50</option>
+                            <option value="A5"> gt 50 </option>
+                            </select>
+                                {/* <input 
                                     name = "labStudentsPerSupervisor"
                                     value = {this.state.labStudentsPerSupervisor}
                                     onChange = {this.handleChange}                                  
-                                />
+                                /> */}
                             </td>
                         </tr>
                     </tbody>
