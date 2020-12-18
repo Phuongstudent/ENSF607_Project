@@ -14,7 +14,7 @@ export default class DynamicTable extends React.Component {
         row: {learningOutcome: "", graduateAttribute: "",  introductionLevel: ""},
         rows:[],
 
-        AUarray:[0,0,0,0,0],
+        AUarray:[20,20,20,20,20],
         AU:0,
 
         message: "",
@@ -87,7 +87,8 @@ handleItemChanged(i, event) {
                      {/* <td>{i+1}</td> */}
                   <td>
                     <input
-                      type="text"
+                      type="number"
+                      pattern="[0-9]*"
                       value={o}
                       onChange={context.handleAUChange.bind(context, i)}
                     />
@@ -157,15 +158,16 @@ this.setState({
 
 handleAUChange(i, event) {
   var AUarray = this.state.AUarray;
-  var sum = AUarray.reduce(function(a, b){
-    return a + b;
-  }, 0);
+  AUarray[i]  = event.target.value;
+  
 
-  if( (sum+event.target.value) >100){
-    AUarray[i]  = 100-sum;
-  }else{
-    AUarray[i]  = event.target.value;
-  }
+
+  
+  // if( (sum+event.target.value) >100){
+  //   AUarray[i]  = 0;
+  // }else if{
+  //   AUarray[i]  = event.target.value;
+  // }
 
   
 
