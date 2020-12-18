@@ -3,16 +3,79 @@ import React from 'react';
 
 
 export default class CourseInformation extends React.Component{
+    state = {
+        description: "",
+        type: "",
+        number: "",
+        safetyTaught: "",
+        safetyExamined: ""
+    };
+
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+        console.log(this.state)
+    };
+
     render() {
         return (
           <div>
            <h1>1.Calendar Information</h1>
-           <h2><text>ENSF 409: Principles of Software Development</text></h2>
-           <h2><text left={0}>A survey of software design and development topics for Engineering students. Topics include: key features of an object-oriented programming language, especially inheritance and polymorphism; elements of object-oriented design; programming and application of common data structures; strategies and tools for testing and debugging.</text></h2>
-           <h2>Course Hours: 3 units; H (3-2)</h2>
-           <h2>Academic Credit: 3</h2>
-           <h2>Calendar Reference: http://www.ucalgary.ca/pubs/calendar/current/software-engineering-for-engineers.html#38252</h2>
-           <h2>Enter your course's learning outcomes below and resize the row heights as necessary to display all text. Once you have entered your learning outcomes, complete the graduate attribute mapping table directly below the list of learning outcomes. Ensure that the number in the "Learning Outcome" column corresponds to the number in your list of learning outcomes.</h2>
+           <tr><textarea
+                                name = "number"
+                                value = {this.state.number}
+                                onChange = {this.handleChange}
+                            />
+           </tr>
+           <tr>
+           <textarea
+                                name = "number"
+                                value = {this.state.number}
+                                onChange = {this.handleChange}
+                            /></tr>
+           <header
+                className = "text">
+            
+                <table>
+                    <tr>
+                        <td>Course Hours</td>
+                        <td>
+                            <input
+                                name = "type"
+                                value = {this.state.type}
+                                onChange = {this.handleChange}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Academic Credit:</td>
+                        <td>
+                            <input
+                                name = "number"
+                                value = {this.state.number}
+                                onChange = {this.handleChange}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Calendar Reference:</td>
+                        <td>
+                            <input
+                                name = "safetyTaught"
+                                value = {this.state.safetyTaught}
+                                onChange = {this.handleChange}
+                            />
+                        </td>
+                    </tr>
+                  
+                </table>
+
+                <div>
+                Enter your course's learning outcomes below and resize the row heights as necessary to display all text. Once you have entered your learning outcomes, complete the graduate attribute mapping table directly below the list of learning outcomes. Ensure that the number in the "Learning Outcome" column corresponds to the number in your list of learning outcomes.
+                </div>
+            </header> 
+          
           </div>
         );
       }
