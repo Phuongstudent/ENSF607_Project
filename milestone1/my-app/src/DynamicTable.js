@@ -395,6 +395,9 @@ renderRows() {
                     <option value="A8">Stat</option>
                     </select>
                 </td>
+                <td>
+                  <input></input>
+                </td>
             </tr>
             <tr>
                 <td>Natural Science</td>
@@ -416,7 +419,9 @@ renderRows() {
                     <option value="A4">Phys</option>
                     </select>
                 </td>
-                
+                <td>
+                  <input></input>
+                </td>
             </tr>
             <tr>
                 <td>Complementary Studies</td>
@@ -444,6 +449,9 @@ renderRows() {
                     <option value="A7">PEthics</option>
                 </select>
                 </td>
+                <td>
+                  <input></input>
+                </td>
             </tr>
             <tr>
                 <td>Engineering Science</td>
@@ -459,7 +467,9 @@ renderRows() {
                     <option value="marked">X</option>
                 </select>
                 </td>
-                
+                <td>
+                  <input></input>
+                </td>
             </tr>
             <tr>
                 <td>Engineering Design</td>
@@ -474,6 +484,9 @@ renderRows() {
                     <option value="blank"></option>
                     <option value="marked">X</option>
                 </select>
+                </td>
+                <td>
+                  <input></input>
                 </td>
             </tr>
           </tbody>
