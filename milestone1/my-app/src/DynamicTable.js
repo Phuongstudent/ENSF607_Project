@@ -14,6 +14,9 @@ export default class DynamicTable extends React.Component {
         row: {learningOutcome: "", graduateAttribute: "",  introductionLevel: ""},
         rows:[],
 
+        AUarray:[0,0,0,0,0],
+        AU:0,
+
         message: "",
         items: []
 
@@ -40,6 +43,15 @@ handleItemChanged(i, event) {
     });
   }
 
+  handleAUChanged(i, event) {
+    var AU = this.state.AU;
+    AU[i]  = event.target.value;
+
+    this.setState({
+      AU: AU
+    });
+  }
+
   renderRowsFirstTable() {
     var context = this;
 
@@ -61,6 +73,32 @@ handleItemChanged(i, event) {
                       X
                     </button>
                   </td>
+                </tr>
+              );
+            });
+  }
+
+  renderRowsAU() {
+    var context = this;
+
+    return  this.state.AUarray.map(function(o, i) {
+              return (
+                <tr key={"AU-" + i}>
+                     {/* <td>{i+1}</td> */}
+                  <td>
+                    <input
+                      type="text"
+                      value={o}
+                      onChange={context.handleAUChange.bind(context, i)}
+                    />
+                  </td>
+                  {/* <td>
+                    <button
+                      onClick={context.handleRowDeleted.bind(context, i)}
+                    >
+                      X
+                    </button>
+                  </td> */}
                 </tr>
               );
             });
@@ -115,6 +153,33 @@ this.setState({
 });
 }
 
+
+
+handleAUChange(i, event) {
+  var AUarray = this.state.AUarray;
+  var sum = AUarray.reduce(function(a, b){
+    return a + b;
+  }, 0);
+
+  if( (sum+event.target.value) >100){
+    AUarray[i]  = 100-sum;
+  }else{
+    AUarray[i]  = event.target.value;
+  }
+
+  
+
+
+
+  
+  
+  this.setState({
+    AUarray: AUarray
+  });
+  }
+
+
+
 handleRowDeleted(i) {
 var rows = this.state.rows;
 rows.splice(i, 1);
@@ -144,6 +209,9 @@ this.setState({
     items: items
 });
 }
+
+
+
 
 renderTableHeader() {
 let header = Object.keys(this.state.row)
@@ -200,9 +268,9 @@ renderRows() {
                 </td>
                 <td>
                     <select name="level" id="level">
-                    <option value="volvo">I(Introduction)</option>
-                    <option value="saab">A(Applied)</option>
-                    <option value="mercedes">D(Developed)</option>
+                    <option value="A1">I(Introduction)</option>
+                    <option value="A2">A(Applied)</option>
+                    <option value="A3">D(Developed)</option>
                     </select>
                 </td>
 
@@ -357,13 +425,20 @@ renderRows() {
         <h1>The following table displays the course content categories and their AU (Accrediation Unit Percentages</h1>
 
 
+
+
+        <table >
+        <tr>
+        <td>
+
         <table className="table4">
+      
           <thead>
             <tr>
             <td>Course Content Category</td>
             <td>Content Element</td>
             <td>Content Element</td>
-            <td>AU %</td>
+            {/* <td>AU %</td> */}
             </tr>
           </thead>
           <tbody>
@@ -395,9 +470,9 @@ renderRows() {
                     <option value="A8">Stat</option>
                     </select>
                 </td>
-                <td>
+                {/* <td>
                   <input></input>
-                </td>
+                </td> */}
             </tr>
             <tr>
                 <td>Natural Science</td>
@@ -419,9 +494,9 @@ renderRows() {
                     <option value="A4">Phys</option>
                     </select>
                 </td>
-                <td>
+                {/* <td>
                   <input></input>
-                </td>
+                </td> */}
             </tr>
             <tr>
                 <td>Complementary Studies</td>
@@ -449,9 +524,9 @@ renderRows() {
                     <option value="A7">PEthics</option>
                 </select>
                 </td>
-                <td>
+                {/* <td>
                   <input></input>
-                </td>
+                </td> */}
             </tr>
             <tr>
                 <td>Engineering Science</td>
@@ -467,9 +542,9 @@ renderRows() {
                     <option value="marked">X</option>
                 </select>
                 </td>
-                <td>
+                {/* <td>
                   <input></input>
-                </td>
+                </td> */}
             </tr>
             <tr>
                 <td>Engineering Design</td>
@@ -485,13 +560,26 @@ renderRows() {
                     <option value="marked">X</option>
                 </select>
                 </td>
-                <td>
-                  <input></input>
-                </td>
+                {/* <td> 
+                  <input>
+                  </input>
+                </td> */}
             </tr>
+            
           </tbody>
         </table>
+      </td>
+      <td>
+      <thead>
+            <tr>
+            <td>AU %</td>
+            </tr>
+        </thead>
+      {this.renderRowsAU()}
 
+      </td>
+      </tr>
+      </table>
       </div>
     );
   }
