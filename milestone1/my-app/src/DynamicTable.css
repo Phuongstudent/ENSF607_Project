@@ -1,0 +1,23 @@
+table,
+td,
+.textarea {
+    border: 1px solid #333;
+    margin-left: auto;
+    margin-right: auto;
+    word-break: break-all;
+    overflow: auto;
+    width: auto;
+    height: auto;
+}
+
+thead,
+tfoot {
+    background-color: #fff;
+    border: 1px solid #333;
+    color: #333;
+}
+
+input {
+    word-wrap: break-word;
+    word-break: break-all;
+}
