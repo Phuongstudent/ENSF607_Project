@@ -29,11 +29,21 @@ export default class LaboratoryExperience extends React.Component {
                     <tr>
                         <td>Lab Type</td>
                         <td>
-                            <input
+                            {/* <input
                                 name = "type"
                                 value = {this.state.type}
                                 onChange = {this.handleChange}
-                            />
+                            /> */}
+
+                                <select name="type" id="type">
+                                <option value="A0">  </option>
+                                <option value="A1"> Hands-on </option>
+                                <option value="A2"> Simulation </option>
+                                <option value="A3">Project </option>
+                                <option value="A4"> Demo </option>
+                                <option value="A5">Other </option>
+
+                                </select>
                         </td>
                     </tr>
                     <tr>
@@ -49,21 +59,33 @@ export default class LaboratoryExperience extends React.Component {
                     <tr>
                         <td>Lab Safety Taught?</td>
                         <td>
-                            <input
+                            {/* <input
                                 name = "safetyTaught"
                                 value = {this.state.safetyTaught}
                                 onChange = {this.handleChange}
-                            />
+                            /> */}
+                                      <select name="safetyTaught" id="safetyTaught">
+                                <option value="A0">  </option>
+                                <option value="A1"> yes </option>
+                                <option value="A2">no </option>
+
+                                </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Lab Safety Examiner</td>
                         <td>
-                            <input
+                            {/* <input
                                 name = "safetyExamined"
                                 value = {this.state.safetyExamined}
                                 onChange = {this.handleChange}
-                            />
+                            /> */}
+                             <select name="safetyExamined" id="safetyExamined">
+                                <option value="A0">  </option>
+                                <option value="A1"> yes </option>
+                                <option value="A2">no </option>
+
+                                </select>
                         </td>
                     </tr>  
                 </table>

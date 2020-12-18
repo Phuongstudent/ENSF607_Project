@@ -44,7 +44,7 @@ export default class CourseInformation extends React.Component {
                     <textarea
                         name = "courseDescription"
                         placeholder = "Course Description"
-                        value = {this.state.courseCode}
+                        value = {this.state.courseDescription}
                         onChange = {this.handleChange}
                     />
                 </div>
