@@ -104,45 +104,48 @@ function LevelTableDescription(){
 
 function LearningOutcome(){
     const [data, setData] = React.useState([
-        {outcome : "outcome1"},
-        {outcome : "outcome2"},
-        {outcome : "outcome3"},
-        {outcome : "outcome4"},
-        {outcome : "outcome5"}
+        {rowNumber: 1, outcome : "outcome1"},
+        {rowNumber: 2, outcome : "outcome2"},
+        {rowNumber: 3, outcome : "outcome3"},
+        {rowNumber: 4, outcome : "outcome4"},
+        {rowNumber: 5, outcome : "outcome5"}
     ])
 
     const [data2, setData2] = React.useState([
-        {grad: "A1", level: "A"},
-        {grad: "A1", level: "I"},
-        {grad: "A1", level: "D"},
-        {grad: "A1", level: "A"},
-        {grad: "A1", level: "A"}
+        {rowNumber : 1, grad: "A1", level: "A"},
+        {rowNumber : 2, grad: "A1", level: "I"},
+        {rowNumber : 3, grad: "A1", level: "D"},
+        {rowNumber : 4, grad: "A1", level: "A"},
+        {rowNumber : 5, grad: "A1", level: "A"}
     ])
 
     const addRow = value => {
         console.log("Adding row"+{value});
-        const newData = [...data, {outcome: value} ];
+        const newData = [...data, {rowNumber: data.length+1, outcome: value} ];
         setData(newData);
-        const newData2 = [...data2, {grad: "A1", level: "A"} ];
+        const newData2 = [...data2, {rowNumber: data.length+1, grad: "A1", level: "A"} ];
         setData2(newData2);
     }
 
-    const changeRow = (value,index) =>{
+    const changeRow = (event,index) =>{
         const newData = [...data];
-        newData[index].outcome = value; 
+        newData[index].outcome = event.target.value; 
         setData(newData);
-        console.log("Change row"+{value} );
+        
     }
 
-    const removeRow = (index)=>{
-        const newData = [...data];
-        newData.splice(index,1);
+    const removeRow = (item)=>{
+        const newData = data.filter( row => Number (row.rowNumber)!== Number(item.rowNumber));
+        const newData2 = data2.filter( row => Number (row.rowNumber)!== Number(item.rowNumber));
+  
+        for(var i = 0; i<newData.length; i++ ){
+            newData[i].rowNumber = i+1;
+            newData2[i].rowNumber = i+1;
+        }
+        
         setData(newData);
-        const newData2 = [...data2];
-        newData2.splice(index,1);
         setData2(newData2);
-        //alert("Index from Remove Row"+index)
-        console.log("Remove row" +index);
+        
     }
 
     const changeGrad = (e, index) => {
@@ -163,14 +166,20 @@ function LearningOutcome(){
     };
 
     const handleChangeRow = (e,index) =>{
-        changeRow(e.value,index);
+        changeRow(e,index);
     };
 
-    const handleRemoveRow = (index) =>{
-        //alert("Index from handleRemove Row"+index)
-        removeRow(index);
-        
+    const handleRemoveRow = (row) =>{
+        removeRow(row);
     };
+
+    const handleRemoveBottomRow = () =>{
+        const newData = data.filter(row => row.rowNumber != data.length);
+        const newData2 =data2.filter(row => row.rowNumber != data2.length);
+
+        setData(newData);
+        setData2(newData2);
+    }
 
     return(
         <div>
@@ -180,9 +189,9 @@ function LearningOutcome(){
         >
             {data.map((row,index)=>{
                 return(
-                <tr key = {index}>
+                <tr  id="addr" key={index}>
                     <td>
-                        {index+1}
+                    {row.rowNumber}
                     </td>
                     <td>
                     <div class ="control">
@@ -191,7 +200,7 @@ function LearningOutcome(){
                         class ="input is-small"
                         type = "text"
                         value = {row.outcome}
-                        onChange = {e=>handleChangeRow(e,index)}
+                        onChange = {(e)=>handleChangeRow(e,index)}
                         />
                     </div>
                         
@@ -199,7 +208,7 @@ function LearningOutcome(){
                     <td>
                         <button
                             class = "delete is-small"
-                            onClick = {e => handleRemoveRow(index)} >
+                            onClick = {(e) => handleRemoveRow(row)} >
                                 X
                         </button>
                     </td>
@@ -213,7 +222,7 @@ function LearningOutcome(){
         <button onClick = {e => handleAddRow()}>
             Add Learning Outcome
         </button>
-        <button onClick = {e => handleRemoveRow(data.length-1)}>
+        <button onClick = {e =>handleRemoveBottomRow()}>
             Remove Learning Outcome
         </button>
         </div>
@@ -244,9 +253,9 @@ function LearningOutcome(){
 
             {data2.map((row,index)=>{
                 return(
-                <tr key = {index}>
+                <tr  id="addr2" key={index}>
                     <td>
-                        {index+1}
+                        {row.rowNumber}
                     </td>
                     <td>
                     <div class ="control">
@@ -282,9 +291,9 @@ function LearningOutcome(){
                         </div>
                     </td>
                     <td>
-                        <button
+                         <button
                             class = "delete is-small"
-                            onClick = {e => handleRemoveRow(index)} >
+                            onClick = {e => handleRemoveRow(row)} >
                                 X
                         </button>
                     </td>
@@ -299,9 +308,9 @@ function LearningOutcome(){
         <button onClick = {e => handleAddRow()}>
             Add Row to Table
         </button>
-        <button onClick = {e => handleRemoveRow(data.length-1)}>
+        <button onClick = {e => handleRemoveBottomRow()}>
             Delete Row From Table
-        </button>
+        </button> 
         </div>
 
         <div>
