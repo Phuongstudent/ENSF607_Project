@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "bulma/css/bulma.css";
 
 function CourseSectionInformation(){
     const [data, setData ] = React.useState([
@@ -28,13 +29,14 @@ function CourseSectionInformation(){
         <div>
             <p>
                 Ensure that the number of sections and hours per week are updated.
-                You my leave the "Number of STudents Per Advisor" column for lecture blank.
+                You my leave the "Number of Students Per Advisor" column for lecture blank.
             </p>
-            <h2>
+            <label class = "label">
                 Laboratory Experience
-            </h2>
+            </label>
 
-        <table>
+        <table
+        class = "table is-bordered">
             <thead>
                 {header.map((head,i) => {
                     return(

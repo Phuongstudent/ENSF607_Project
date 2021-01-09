@@ -1,55 +1,35 @@
 import React, {useState} from "react";
+import "bulma/css/bulma.css";
 
 function CourseContentCategory(){
     const [data, setData] = React.useState([
-        {category: "Math", element1 : "", element2: "", AU: 20},
+        {category: "Math", element1 : "", element2: "", AU: 5},
         {category: "NaturalScience", element1 : "", element2: "", AU: 20},
         {category: "ComplementaryStudies", element1 : "", element2: "", AU: 20},
         {category: "EngineeringScience", element1 : "", element2: "", AU: 20},
         {category: "EngineeringDesign", element1 : "", element2: "", AU: 20},
     ]);
     
-    const AUrows = () =>{
-
-        const sumData = () =>{
-            let total = Number(0);
-        for (var i = 0; i<data.length;i++){
-            total+=Number(data[i].AU);
-            }
-        return total;
-        };
-
-        const handleAUChange = (i, event) => {
-            const newData = [...data];
-            let temp = Number(sumData()-data[i].AU);
-            if( Number(temp)+Number(event.target.value) < Number(101)){
-                newData[i].AU = event.target.value;
-            }else{
-                alert("Number is too large")
-            }
-            setData(newData);
-            };
-
-        
-        return(
-            data.map((row,i) => {
-
-                return(
-                <tr key={i}>
-                    <td>
-                    <input
-                    type="number"
-                    value = {row.AU}
-                    onChange = {e =>handleAUChange(i, e)}
-                    />
-                     </td>
-                </tr>
-                )})
-            
-        );
-    }
-        
     
+        
+    const sumData = () =>{
+        let total = Number(0);
+    for (var i = 0; i<data.length;i++){
+        total+=Number(data[i].AU);
+        }
+    return total;
+    };
+
+    const handleAUChange = (i, event) => {
+        const newData = [...data];
+        let temp = Number(sumData()-data[i].AU);
+        if( Number(temp)+Number(event.target.value) < Number(101)){
+            newData[i].AU = event.target.value;
+        }else{
+            alert("Number is too large")
+        }
+        setData(newData);
+        };
 
     const handleChange = (category, e) =>{
         const newData = [...data];
@@ -68,23 +48,28 @@ function CourseContentCategory(){
     return(
         <div name = "CourseContent">
          <div name = "header1"> 
-            <h1>
+            <label class = "label">
                 Course Content Categories
-            </h1>
+            </label>
             <p>
                 The following table displays the course content  categories and their AU (Accreditatoin Unit) percentages
             </p>
         
-            <table name = "container">
+            <table
+             class = "table is-bordered"
+             name = "container">
 
             
-            <table className="CourseContentTable">
+            <table 
+            class = "table is-bordered"
+            className="CourseContentTable">
           
               <thead>
                 <tr>
                 <td>Course Content Category</td>
                 <td>Content Element</td>
                 <td>Content Element</td>
+                <td>AU%</td>
                 </tr>
               </thead>
               <tbody>
@@ -116,6 +101,15 @@ function CourseContentCategory(){
                         <option value="Stat">Stat</option>
                         </select>
                     </td>
+                    <td>
+                    <input
+                    type="number"
+                    value = {data[0].AU}
+                    onChange = {e =>handleAUChange(0, e)}
+                    />
+                     </td>
+
+
                 </tr>
                 <tr>
                     <td>Natural Science</td>
@@ -137,6 +131,13 @@ function CourseContentCategory(){
                         <option value="Phys">Phys</option>
                         </select>
                     </td>
+                    <td>
+                    <input
+                    type="number"
+                    value = {data[1].AU}
+                    onChange = {e =>handleAUChange(1, e)}
+                    />
+                     </td>
                 </tr>
                 <tr>
                     <td>Complementary Studies</td>
@@ -164,6 +165,13 @@ function CourseContentCategory(){
                         <option value="A7">PEthics</option>
                     </select>
                     </td>
+                    <td>
+                    <input
+                    type="number"
+                    value = {data[2].AU}
+                    onChange = {e =>handleAUChange(2, e)}
+                    />
+                     </td>
                 </tr>
                 <tr>
                     <td>Engineering Science</td>
@@ -179,6 +187,13 @@ function CourseContentCategory(){
                         <option value="marked">X</option>
                     </select>
                     </td>
+                    <td>
+                    <input
+                    type="number"
+                    value = {data[3].AU}
+                    onChange = {e =>handleAUChange(3, e)}
+                    />
+                     </td>
                 </tr>
                 <tr>
                     <td>Engineering Design</td>
@@ -194,17 +209,17 @@ function CourseContentCategory(){
                         <option value="marked">X</option>
                     </select>
                     </td>
+                    <td>
+                    <input
+                    type="number"
+                    value = {data[4].AU}
+                    onChange = {e =>handleAUChange(4, e)}
+                    />
+                     </td>
                 </tr>
               </tbody>
             </table>
-            <td>
-          <thead>
-                <tr>
-                <td>AU %</td>
-                </tr>
-        </thead>
-                <AUrows/>
-                </td>
+         
             </table>
             <p>
                 * At least one element must be selected for categories that Identify AUs

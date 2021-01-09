@@ -1,13 +1,14 @@
 import React, {useState} from "react";
+import "bulma/css/bulma.css";
 
 function SectionHeader(){
     var sectionHead = "2. Learning Outcomes";
     var sectionDescription = "At the end of the course, you will be able to:";
     return(
         <div>
-        <h2>
+        <label class = "label">
             {sectionHead}
-        </h2>
+        </label>
         <p>
             {sectionDescription}
         </p>
@@ -33,7 +34,8 @@ function GradTableDescription(){
         <p>
             CEAB Graduate Attributes
         </p>
-        <table className="gradTable">
+        <table 
+        className="gradTable">
              <tbody>
                 <tr>
                     <td>A1. A knowledge base for engineering</td>
@@ -165,6 +167,7 @@ function LearningOutcome(){
         <div>
         <SectionHeader/>
         <table
+        class = "table is-bordered"
         className = "table1">
             {data.map((row,i)=>{
                 return(
@@ -182,8 +185,10 @@ function LearningOutcome(){
                         </form>
                     </td>
                     <td>
-                        <button onClick = {e => handleRemoveRow(i)} >
-                            X
+                        <button
+                            class = "button is-small"
+                            onClick = {e => handleRemoveRow(i)} >
+                                X
                         </button>
                     </td>
                     
@@ -206,6 +211,7 @@ function LearningOutcome(){
         <div>
 
         <table
+        class = "table is-bordered"
         className = "table2">
             <thead>
                 <tr>
@@ -264,10 +270,10 @@ function LearningOutcome(){
         </div>
         <div>
         <button onClick = {e => handleAddRow()}>
-            Add Learning Outcome
+            Add Row to Table
         </button>
         <button onClick = {e => handleRemoveRow(data.length-1)}>
-            Remove Learning Outcome
+            Delete Row From Table
         </button>
         </div>
 
