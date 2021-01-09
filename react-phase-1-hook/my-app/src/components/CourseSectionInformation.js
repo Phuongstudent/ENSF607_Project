@@ -21,7 +21,7 @@ function CourseSectionInformation(){
             newData[i].students = e.target.value;
         }
         
-        alert(e.target.value)
+        
         setData(newData);
     }
     return(
