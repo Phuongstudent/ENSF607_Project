@@ -181,13 +181,16 @@ function LearningOutcome(){
                         {i+1}
                     </td>
                     <td>
-                        <form>
+                    <div class ="control">
+                            
                         <input
+                        class ="input is-small"
                         type = "text"
                         value = {row.outcome}
                         onChange = {e=>handleChangeRow(e,i)}
                         />
-                        </form>
+                    </div>
+                        
                     </td>
                     <td>
                         <button

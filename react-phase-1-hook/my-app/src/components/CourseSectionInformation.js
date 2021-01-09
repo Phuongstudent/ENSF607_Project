@@ -55,20 +55,24 @@ function CourseSectionInformation(){
                                 {row.category}
                             </td>
                             <td>
+                            <div class = "control">
                                 <input
+                                class = "input is-small"
                                 name = "sections"
                                 value ={row.sections}
                                 onChange = {e => changeRow(e,i)}
                                 />
-                                
+                                </div>
                             </td>
                             <td>
+                            <div class = "control">
                                 <input
+                                class = "input is-small"
                                 name = "hours"
                                 value ={row.hours}
                                 onChange = {e => changeRow(e,i)}
                                 />
-                               
+                            </div>   
                             </td>
                             <td>
                             <div class ="control">

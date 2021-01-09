@@ -112,11 +112,14 @@ function CourseContentCategory(){
                         </div>
                     </td>
                     <td>
+                    <div class = "control">
                     <input
+                    class = "input is-small"
                     type="number"
                     value = {data[0].AU}
                     onChange = {e =>handleAUChange(0, e)}
                     />
+                    </div>
                      </td>
 
 
@@ -155,11 +158,14 @@ function CourseContentCategory(){
                     </div>
                     </td>
                     <td>
+                    <div class = "control">
                     <input
+                    class = "input is-small"
                     type="number"
                     value = {data[1].AU}
                     onChange = {e =>handleAUChange(1, e)}
                     />
+                    </div>
                      </td>
                 </tr>
                 <tr>
@@ -200,11 +206,14 @@ function CourseContentCategory(){
                     
                     </td>
                     <td>
+                    <div class = "control">
                     <input
                     type="number"
+                    class = "input is-small"
                     value = {data[2].AU}
                     onChange = {e =>handleAUChange(2, e)}
                     />
+                    </div>
                      </td>
                 </tr>
                 <tr>
@@ -231,11 +240,14 @@ function CourseContentCategory(){
                         </div>
                     </td>
                     <td>
+                    <div class = "control">
                     <input
+                    class = "input is-small"
                     type="number"
                     value = {data[3].AU}
                     onChange = {e =>handleAUChange(3, e)}
                     />
+                    </div>
                      </td>
                 </tr>
                 <tr>
@@ -263,11 +275,14 @@ function CourseContentCategory(){
                         </div>
                     </td>
                     <td>
+                    <div class = "control">
                     <input
                     type="number"
+                    class = "input is-small"
                     value = {data[4].AU}
                     onChange = {e =>handleAUChange(4, e)}
                     />
+                    </div>
                      </td>
                 </tr>
               </tbody>
