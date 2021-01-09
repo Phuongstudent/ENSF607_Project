@@ -3,9 +3,9 @@ import "bulma/css/bulma.css";
 
 function CourseSectionInformation(){
     const [data, setData ] = React.useState([
-        {category: "Lecture", sections: 2 , hours: 3 , students: 20},
-        {category: "Tutorial", sections: 2 , hours: 3 , students: 20},
-        {category: "Lab", sections: 2 , hours: 3 , students: 20}
+        {category: "Lecture", sections: 2 , hours: 3 , students: "lt5"},
+        {category: "Tutorial", sections: 2 , hours: 3 , students: "gt50"},
+        {category: "Lab", sections: 2 , hours: 3 , students: "20-50"}
     ]);
 
     const header = ["   ","Number of Sections","Hours Per Week","Number of Students Per Supervisor"];
@@ -77,10 +77,11 @@ function CourseSectionInformation(){
                             <td>
                             <div class ="control">
                             <div class ="select is-small">
-                                <select name ="student"
+                                <select name ="students"
+                                value = {data[i].students}
                                 onChange = {e => changeRow(e,i)}>
                                     <option value="">  </option>
-                                    <option value="5"> {'<'} 5 </option>
+                                    <option value="lt5"> {'<'} 5 </option>
                                     <option value="5-10">5-10 </option>
                                     <option value="10-20">10-20</option>
                                     <option value="20-50">20-50</option>

@@ -113,8 +113,8 @@ function LearningOutcome(){
 
     const [data2, setData2] = React.useState([
         {grad: "A1", level: "A"},
-        {grad: "A1", level: "A"},
-        {grad: "A1", level: "A"},
+        {grad: "A1", level: "I"},
+        {grad: "A1", level: "D"},
         {grad: "A1", level: "A"},
         {grad: "A1", level: "A"}
     ])
@@ -141,18 +141,20 @@ function LearningOutcome(){
         const newData2 = [...data2];
         newData2.splice(index,1);
         setData2(newData2);
-      
+        alert("Index from Remove Row"+index)
         console.log("Remove row" +index);
     }
 
     const changeGrad = (e, index) => {
-        const NewData2 = [...data2];
-        NewData2[index].grad = e.target.value;
+        const newData2 = [...data2];
+        newData2[index].grad = e.target.value;
+        setData2(newData2);
     };
 
     const changeLevel = (e, index) => {
-        const NewData2 = [...data2];
-        NewData2[index].level = e.target.value;
+        const newData2 = [...data2];
+        newData2[index].level = e.target.value;
+        setData2(newData2);
     };
 
 
@@ -165,7 +167,9 @@ function LearningOutcome(){
     };
 
     const handleRemoveRow = (index) =>{
+        alert("Index from handleRemove Row"+index)
         removeRow(index);
+        
     };
 
     return(
@@ -174,11 +178,11 @@ function LearningOutcome(){
         <table
         class = "table is-bordered is-striped is-narrow is-hoverable"
         >
-            {data.map((row,i)=>{
+            {data.map((row,index)=>{
                 return(
-                <tr key = {i}>
+                <tr key = {index}>
                     <td>
-                        {i+1}
+                        {index+1}
                     </td>
                     <td>
                     <div class ="control">
@@ -187,7 +191,7 @@ function LearningOutcome(){
                         class ="input is-small"
                         type = "text"
                         value = {row.outcome}
-                        onChange = {e=>handleChangeRow(e,i)}
+                        onChange = {e=>handleChangeRow(e,index)}
                         />
                     </div>
                         
@@ -195,7 +199,7 @@ function LearningOutcome(){
                     <td>
                         <button
                             class = "delete is-small"
-                            onClick = {e => handleRemoveRow(i)} >
+                            onClick = {e => handleRemoveRow(index)} >
                                 X
                         </button>
                     </td>
@@ -238,17 +242,17 @@ function LearningOutcome(){
                 </tr>
             </thead>
 
-            {data2.map((row,i)=>{
+            {data2.map((row,index)=>{
                 return(
-                <tr key = {i}>
+                <tr key = {index}>
                     <td>
-                        {i+1}
+                        {index+1}
                     </td>
                     <td>
                     <div class ="control">
                             <div class ="select is-small">
                             
-                    <select name="grad" id="grad" onChange ={e=> changeGrad(e ,i)}>
+                    <select value = {data2[index].grad} name="grad" id="grad" onChange ={e=> changeGrad(e ,index)}>
                         <option value="A1">A1. A knowledge base for engineering</option>
                         <option value="A2">A2. Problem analysis</option>
                         <option value="A3">A3. Investigation</option>
@@ -269,10 +273,10 @@ function LearningOutcome(){
                     <div class ="control">
                             <div class ="select is-small">
                             
-                    <select name="level" id="level" onChange ={e=> changeLevel(e ,i)}>
-                        <option value="A1">I(Introduction)</option>
-                        <option value="A2">A(Applied)</option>
-                        <option value="A3">D(Developed)</option>
+                    <select value = {data2[index].level} name="level" id="level" onChange ={e=> changeLevel(e ,index)}>
+                        <option value="I">I(Introduction)</option>
+                        <option value="A">A(Applied)</option>
+                        <option value="D">D(Developed)</option>
                         </select>
                         </div>
                         </div>
@@ -280,7 +284,7 @@ function LearningOutcome(){
                     <td>
                         <button
                             class = "delete is-small"
-                            onClick = {e => handleRemoveRow(i)} >
+                            onClick = {e => handleRemoveRow(index)} >
                                 X
                         </button>
                     </td>

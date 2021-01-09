@@ -31,7 +31,7 @@ function CourseContentCategory(){
         setData(newData);
         };
 
-    const handleChange = (category, e) =>{
+    const handleChange2 = (category, e) =>{
         const newData = [...data];
         let temp = newData.find(row=> row.category === category);
 
@@ -39,6 +39,20 @@ function CourseContentCategory(){
             temp.element1 = e.target.value;
         }else{
             temp.element2 = e.target.value;
+        }
+        setData(newData);
+    };
+
+    const handleChange = (myCategory, e) =>{
+        const newData = [...data];
+        for(var i = 0; i < newData.length; i++){
+            if (newData[i].category === myCategory){
+                if (e.target.name === "element1"){
+                    newData[i].element1 = e.target.value;
+                }else{
+                    newData[i].element2 = e.target.value;
+                }
+            }
         }
         setData(newData);
     };
@@ -78,7 +92,7 @@ function CourseContentCategory(){
                     <td>
                         <div class ="control">
                             <div class ="select is-small">
-                            <select name="element1" onChange = {e => handleChange("Math",e)}>
+                            <select value = {data[0].element1} name="element1" onChange = {e => handleChange("Math",e)}>
                             <option value="blank"></option>
                             <option value="DiffCalcs">DiffCalcs</option>
                             <option value="DiffEq">DiffEq</option>
@@ -97,7 +111,7 @@ function CourseContentCategory(){
                     <td>
                         <div class ="control">
                             <div class ="select is-small">
-                        <select name="element2" onChange = {e => handleChange("Math",e)}>
+                        <select value = {data[0].elemen2} name="element2" onChange = {e => handleChange("Math",e)}>
                         <option value="blank"></option>
                         <option value="DiffCalcs">DiffCalcs</option>
                         <option value="DiffEq">DiffEq</option>
@@ -130,7 +144,7 @@ function CourseContentCategory(){
                     <div class ="control">
                             <div class ="select is-small">
                             
-                        <select name="element1" onChange = {e => handleChange("NaturalScience",e)}>
+                        <select value = {data[1].element1} name="element1" onChange = {e => handleChange("NaturalScience",e)}>
                         <option value="blank"></option>
                         <option value="Chem">Chem</option>
                         <option value="Earth">Earth</option>
@@ -146,7 +160,7 @@ function CourseContentCategory(){
                     <div class ="control">
                             <div class ="select is-small">
                             
-                        <select name="element2" onChange = {e => handleChange("NaturalScience",e)}>
+                        <select value = {data[1].element2} name="element2" onChange = {e => handleChange("NaturalScience",e)}>
                         <option value="blank"></option>
                         <option value="Chem">Chem</option>
                         <option value="Earth">Earth</option>
@@ -174,7 +188,7 @@ function CourseContentCategory(){
                     <div class ="control">
                             <div class ="select is-small">
                             
-                    <select name="element1" onChange = {e => handleChange("ComplementaryStudies",e)}>
+                    <select value = {data[2].element1} name="element1" onChange = {e => handleChange("ComplementaryStudies",e)}>
                         <option value="blank"></option>
                         <option value="A1">EngEcon</option>
                         <option value="A2">EnvSust</option>
@@ -190,7 +204,7 @@ function CourseContentCategory(){
                     <td>
                     <div class ="control">
                             <div class ="select is-small">
-                    <select name="element2" onChange = {e => handleChange("ComplementaryStudies",e)}>
+                    <select value = {data[2].element2} name="element2" onChange = {e => handleChange("ComplementaryStudies",e)}>
                         <option value="blank"></option>
                         <option value="A1">EngEcon</option>
                         <option value="A2">EnvSust</option>
@@ -222,7 +236,7 @@ function CourseContentCategory(){
                     <div class ="control">
                             <div class ="select is-small">
                             
-                    <select name="element1" onChange = {e => handleChange("EngineeringScience",e)}>
+                    <select value = {data[3].element1} name="element1" onChange = {e => handleChange("EngineeringScience",e)}>
                         
                         <option value="marked">X</option>
                     </select>
@@ -232,7 +246,7 @@ function CourseContentCategory(){
                     <td>
                     <div class ="control">
                             <div class ="select is-small">
-                    <select name="element2" onChange = {e => handleChange("EngineeringScience",e)}>
+                    <select value = {data[3].element2} name="element2" onChange = {e => handleChange("EngineeringScience",e)}>
                         
                         <option value="marked">X</option>
                     </select>
@@ -256,7 +270,7 @@ function CourseContentCategory(){
                     <div class ="control">
                             <div class ="select is-small">
                            
-                    <select name="element1" onChange = {e => handleChange("EngineeringDesign",e)}>
+                    <select value = {data[4].element1} name="element1" onChange = {e => handleChange("EngineeringDesign",e)}>
                         
                         <option value="marked">X</option>
                     </select>
@@ -267,7 +281,7 @@ function CourseContentCategory(){
                     <div class ="control">
                             <div class ="select is-small">
                             
-                    <select name="element2" onChange = {e => handleChange("EngineeringDesign",e)}>
+                    <select value = {data[4].element2} name="element2" onChange = {e => handleChange("EngineeringDesign",e)}>
                         
                         <option value="marked">X</option>
                     </select>
