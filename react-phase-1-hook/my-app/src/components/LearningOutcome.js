@@ -242,6 +242,9 @@ function LearningOutcome(){
                         {i+1}
                     </td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
+                            
                     <select name="grad" id="grad" onChange ={e=> changeGrad(e ,i)}>
                         <option value="A1">A1. A knowledge base for engineering</option>
                         <option value="A2">A2. Problem analysis</option>
@@ -256,13 +259,20 @@ function LearningOutcome(){
                         <option value="A11">A11. Economics and project management</option>
                         <option value="A12">A12. Life-long learning</option>
                         </select>
+                        </div>
+                        </div>
                     </td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
+                            
                     <select name="level" id="level" onChange ={e=> changeLevel(e ,i)}>
                         <option value="A1">I(Introduction)</option>
                         <option value="A2">A(Applied)</option>
                         <option value="A3">D(Developed)</option>
                         </select>
+                        </div>
+                        </div>
                     </td>
                     <td>
                         <button

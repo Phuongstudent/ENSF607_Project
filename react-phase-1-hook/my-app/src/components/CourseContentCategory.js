@@ -76,19 +76,27 @@ function CourseContentCategory(){
                 <tr>
                     <td>Math</td>
                     <td>
-                        <select name="element1" onChange = {e => handleChange("Math",e)}>
-                        <option value="blank"></option>
-                        <option value="DiffCalcs">DiffCalcs</option>
-                        <option value="DiffEq">DiffEq</option>
-                        <option value="Discrete">Discrete</option>
-                        <option value="IntCalc">IntCalc</option>
-                        <option value="LinAlg">LinAlg</option>
-                        <option value="NMeths">NMeths</option>
-                        <option value="Prob">Prob</option>
-                        <option value="Stat">Stat</option>
+                        <div class ="control">
+                            <div class ="select is-small">
+                            <select name="element1" onChange = {e => handleChange("Math",e)}>
+                            <option value="blank"></option>
+                            <option value="DiffCalcs">DiffCalcs</option>
+                            <option value="DiffEq">DiffEq</option>
+                            <option value="Discrete">Discrete</option>
+                            <option value="IntCalc">IntCalc</option>
+                            <option value="LinAlg">LinAlg</option>
+                            <option value="NMeths">NMeths</option>
+                            <option value="Prob">Prob</option>
+                            <option value="Stat">Stat</option>
                         </select>
+
+                            </div>
+                        </div>
+                        
                     </td>
                     <td>
+                        <div class ="control">
+                            <div class ="select is-small">
                         <select name="element2" onChange = {e => handleChange("Math",e)}>
                         <option value="blank"></option>
                         <option value="DiffCalcs">DiffCalcs</option>
@@ -100,6 +108,8 @@ function CourseContentCategory(){
                         <option value="Prob">Prob</option>
                         <option value="Stat">Stat</option>
                         </select>
+                            </div>
+                        </div>
                     </td>
                     <td>
                     <input
@@ -114,6 +124,9 @@ function CourseContentCategory(){
                 <tr>
                     <td>Natural Science</td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
+                            
                         <select name="element1" onChange = {e => handleChange("NaturalScience",e)}>
                         <option value="blank"></option>
                         <option value="Chem">Chem</option>
@@ -121,8 +134,15 @@ function CourseContentCategory(){
                         <option value="Life">Life</option>
                         <option value="Phys">Phys</option>
                         </select>
+
+                        </div>
+                    </div>
                     </td>
                     <td>
+
+                    <div class ="control">
+                            <div class ="select is-small">
+                            
                         <select name="element2" onChange = {e => handleChange("NaturalScience",e)}>
                         <option value="blank"></option>
                         <option value="Chem">Chem</option>
@@ -130,6 +150,9 @@ function CourseContentCategory(){
                         <option value="Life">Life</option>
                         <option value="Phys">Phys</option>
                         </select>
+
+                        </div>
+                    </div>
                     </td>
                     <td>
                     <input
@@ -142,6 +165,9 @@ function CourseContentCategory(){
                 <tr>
                     <td>Complementary Studies</td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
+                            
                     <select name="element1" onChange = {e => handleChange("ComplementaryStudies",e)}>
                         <option value="blank"></option>
                         <option value="A1">EngEcon</option>
@@ -152,8 +178,12 @@ function CourseContentCategory(){
                         <option value="A6">OWComm</option>
                         <option value="A7">PEthics</option>
                     </select>
+                            </div>
+                        </div>
                     </td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
                     <select name="element2" onChange = {e => handleChange("ComplementaryStudies",e)}>
                         <option value="blank"></option>
                         <option value="A1">EngEcon</option>
@@ -163,7 +193,11 @@ function CourseContentCategory(){
                         <option value="A5">Impacts</option>
                         <option value="A6">OWComm</option>
                         <option value="A7">PEthics</option>
+                        
                     </select>
+                    </div>
+                    </div>
+                    
                     </td>
                     <td>
                     <input
@@ -176,16 +210,25 @@ function CourseContentCategory(){
                 <tr>
                     <td>Engineering Science</td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
+                            
                     <select name="element1" onChange = {e => handleChange("EngineeringScience",e)}>
-                        <option value="blank"></option>
+                        
                         <option value="marked">X</option>
                     </select>
+                    </div>
+                        </div>
                     </td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
                     <select name="element2" onChange = {e => handleChange("EngineeringScience",e)}>
-                        <option value="blank"></option>
+                        
                         <option value="marked">X</option>
                     </select>
+                    </div>
+                        </div>
                     </td>
                     <td>
                     <input
@@ -198,16 +241,26 @@ function CourseContentCategory(){
                 <tr>
                     <td>Engineering Design</td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
+                           
                     <select name="element1" onChange = {e => handleChange("EngineeringDesign",e)}>
-                        <option value="blank"></option>
+                        
                         <option value="marked">X</option>
                     </select>
+                    </div>
+                    </div>
                     </td>
                     <td>
+                    <div class ="control">
+                            <div class ="select is-small">
+                            
                     <select name="element2" onChange = {e => handleChange("EngineeringDesign",e)}>
-                        <option value="blank"></option>
+                        
                         <option value="marked">X</option>
                     </select>
+                    </div>
+                        </div>
                     </td>
                     <td>
                     <input

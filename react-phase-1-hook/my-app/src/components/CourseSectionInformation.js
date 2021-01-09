@@ -71,7 +71,8 @@ function CourseSectionInformation(){
                                
                             </td>
                             <td>
-                            
+                            <div class ="control">
+                            <div class ="select is-small">
                                 <select name ="student"
                                 onChange = {e => changeRow(e,i)}>
                                     <option value="">  </option>
@@ -81,7 +82,8 @@ function CourseSectionInformation(){
                                     <option value="20-50">20-50</option>
                                     <option value="gt50"> {'>'} 50 </option>
                                 </select>
-                                
+                                </div>
+                            </div>
                               
                             </td>
                         </tr>
