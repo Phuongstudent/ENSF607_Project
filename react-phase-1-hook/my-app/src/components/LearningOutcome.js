@@ -279,8 +279,12 @@ function LearningOutcome(){
 
         <div>
             <GradTableDescription/>
+            <text>
+                {"\n\n\n\n"}
+            </text>
             <LevelTableDescription/>
         </div>
+
 
         </div>        
     );
