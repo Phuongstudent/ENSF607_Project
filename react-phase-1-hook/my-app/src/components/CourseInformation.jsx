@@ -32,38 +32,50 @@ function CourseInformation() {
            <header
                 className = "text">
                 <h2>Calendar Information</h2>
+                <label class="label">Name</label>
                 <div>
                     <input
+                        class ="input"
+                        type = "text"
                         name = "courseCode"
                         placeholder = "Course Code"
                         value = {courseCode}
-                        onChange = { (text) =>setCourseCode(text)}
+                        onChange = { (event) =>setCourseCode(event.target.value)}
                     />
                 </div>
+                <label class="label">Course Title</label>
                 <div>
                     <input
+                        class ="input"
                         name = "courseTitle"
                         placeholder = "Course Title"
                         value = {courseTitle}
-                        onChange = {(text) =>setCourseTitle(text)}
+                        onChange = {(event) =>setCourseTitle(event.target.value)}
                     />
                 </div>
-                <div>
+             
+                <div class = "field">
+                    <label class="label">Course Description</label>
+                    <div class="control">
                     <textarea
+                        class="textarea"
                         name = "courseDescription"
                         placeholder = "Course Description"
                         value = {courseDescription}
-                        onChange = {(text) =>setCourseDescription(text)}
+                        onChange = {(event) =>setCourseDescription(event.target.value)}
                     />
+                    </div>
+                   
                 </div>
                 <table>
                     <tr>
                         <td>Course Hours</td>
                         <td>
                             <input
+                                class ="input"
                                 name = "courseHours"
                                 value = {courseHours}
-                                onChange = {(text) =>setCourseHours(text)}
+                                onChange = {(event) =>setCourseHours(event.target.value)}
                             />
                         </td>
                     </tr>
@@ -71,9 +83,10 @@ function CourseInformation() {
                         <td>Academic Credit:</td>
                         <td>
                             <input
+                                class ="input"
                                 name = "academicCredit"
                                 value = {academicCredit}
-                                onChange = {(text) =>setAcademicCredit(text)}
+                                onChange = {(event) =>setAcademicCredit(event.target.value)}
                             />
                         </td>
                     </tr>
@@ -81,9 +94,10 @@ function CourseInformation() {
                         <td>Calendar Reference:</td>
                         <td>
                             <input
+                                class ="input"
                                 name = "calendarReference"
                                 value = {calendarReference}
-                                onChange = {(text) =>setCalendarReference(text)}
+                                onChange = {(event) =>setCalendarReference(event.target.value)}
                             />
                         </td>
                     </tr>
@@ -98,4 +112,4 @@ function CourseInformation() {
  
 }
 
-export function CourseInformation()
+export default CourseInformation;
