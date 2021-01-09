@@ -6,6 +6,7 @@ function SectionHeader(){
     var sectionDescription = "At the end of the course, you will be able to:";
     return(
         <div>
+            
         <label class = "label">
             {sectionHead}
         </label>
@@ -20,6 +21,8 @@ function SectionHeader2(){
     var sectionDescription ="Graduate Attributes are generic characteristics specified by the CEAB (Canadian Engineering Accreditation Board), expected to be exhibited by graduates of Canadian engineering schools. This table summarizes how the Learning Outcomes relate to key Graduate Attributes addressed in this course.";
     return(
         <div>
+            <br>
+            </br>
             <p>
                 {sectionDescription}
             </p>
@@ -34,6 +37,7 @@ function GradTableDescription(){
         <p>
             CEAB Graduate Attributes
         </p>
+        <ol>
         <table 
         className="gradTable">
              <tbody>
@@ -63,6 +67,7 @@ function GradTableDescription(){
                 </tr>
               </tbody>
         </table>
+        </ol>
         </div>
         
     );
@@ -71,7 +76,7 @@ function GradTableDescription(){
 function LevelTableDescription(){
     return(
         <div>
-            <p>
+            <p name ="is-small">
                 *The level at which the learning outcome is addressed in this course:
             </p>
         <table className="levelTable">
@@ -167,8 +172,8 @@ function LearningOutcome(){
         <div>
         <SectionHeader/>
         <table
-        class = "table is-bordered"
-        className = "table1">
+        class = "table is-bordered is-striped is-narrow is-hoverable"
+        >
             {data.map((row,i)=>{
                 return(
                 <tr key = {i}>
@@ -186,7 +191,7 @@ function LearningOutcome(){
                     </td>
                     <td>
                         <button
-                            class = "button is-small"
+                            class = "delete is-small"
                             onClick = {e => handleRemoveRow(i)} >
                                 X
                         </button>
@@ -210,9 +215,12 @@ function LearningOutcome(){
         </div>
         <div>
 
+        <br>
+        </br>
+
         <table
-        class = "table is-bordered"
-        className = "table2">
+        class = "table is-bordered is-striped is-narrow is-hoverable"
+        >
             <thead>
                 <tr>
                     <td>
@@ -255,10 +263,12 @@ function LearningOutcome(){
                         <option value="A2">A(Applied)</option>
                         <option value="A3">D(Developed)</option>
                         </select>
-        </td>
+                    </td>
                     <td>
-                        <button onClick = {e => handleRemoveRow(i)} >
-                            X
+                        <button
+                            class = "delete is-small"
+                            onClick = {e => handleRemoveRow(i)} >
+                                X
                         </button>
                     </td>
                     
@@ -278,10 +288,11 @@ function LearningOutcome(){
         </div>
 
         <div>
+            <br>
+            </br>
             <GradTableDescription/>
-            <text>
-                {"\n\n\n\n"}
-            </text>
+            <br>
+            </br>
             <LevelTableDescription/>
         </div>
 

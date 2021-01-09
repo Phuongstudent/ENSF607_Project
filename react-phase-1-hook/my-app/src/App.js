@@ -15,15 +15,23 @@ function App() {
       <div>
         <CourseInformation/>
       </div>
+      <br>
+      </br>
       <div>
         <LearningOutcome/>
       </div>
+      <br>
+      </br>
       <div>
         <CourseContentCategory/>
       </div>
+      <br>
+      </br>
       <div>
         <CourseSectionInformation/>
       </div>
+      <br>
+      </br>
     
     </div>
  
