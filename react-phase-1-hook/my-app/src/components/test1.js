@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function CourseContentCategory(){
+function test1(){
     const [data, setData] = React.useState([
         {category: "Math", element1 : "", element2: "", AU: 20},
         {category: "NaturalScience", element1 : "", element2: "", AU: 20},
@@ -31,6 +31,7 @@ function CourseContentCategory(){
             };
 
         
+        
         return(
             data.map((row,i) => {
 
@@ -49,6 +50,7 @@ function CourseContentCategory(){
         );
     }
         
+
     
 
     const handleChange = (category, e) =>{
@@ -64,6 +66,7 @@ function CourseContentCategory(){
     };
 
 
+   
 
     return(
         <div name = "CourseContent">
@@ -214,4 +217,4 @@ function CourseContentCategory(){
     );
 }
 
-export default CourseContentCategory;
+export default test1;
