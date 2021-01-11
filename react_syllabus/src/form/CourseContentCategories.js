@@ -21,6 +21,11 @@ export default function CourseContentCategory(){
         const tempRows = [...courseCategory];
         tempRows[event.target.title][event.target.name] = event.target.value;
         let total = sumAU(tempRows);
+
+        if(tempRows[event.target.title][event.target.name].length<1){
+            tempRows[event.target.title][event.target.name] = 0;
+        }
+
         if(Number(total) > Number(100)){
             tempRows[event.target.title][event.target.name] = event.target.value - (total - 100);
         }
