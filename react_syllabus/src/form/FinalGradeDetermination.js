@@ -14,9 +14,25 @@ export default function FinalGradeDetermination() {
         ]);
     }
 
+
+    const sumWeight = () =>{
+        return gradeRows.reduce((sum, currentValue) => sum + parseFloat(currentValue.weight), 0)
+        
+    }
+
+
     const updateRow = event => {
         const tempRows = [...gradeRows]
         tempRows[event.target.title][event.target.name] = event.target.value;
+        let total = sumWeight();
+        
+        if(tempRows[event.target.title][event.target.name].length<1){
+            tempRows[event.target.title][event.target.name] = 0;
+        }
+        if(event.target.name == "weight" && total > 100){
+            tempRows[event.target.title][event.target.name] = event.target.value - (total - 100);
+        }
+
         setGradeRows(tempRows)
     }
 
