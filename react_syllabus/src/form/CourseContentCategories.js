@@ -9,11 +9,27 @@ export default function CourseContentCategory(){
         {category: "EngineeringDesign", element1 : "", element2: "", AU: 20},
     ]);
 
+    const sumAU = (tempRows) =>{
+        let total = Number(0);
+        for (var i = 0; i<courseCategory.length;i++){
+        total+=Number(courseCategory[i].AU);
+        }
+        return total;
+    };
+
     const updateRow = event => {
-        const tempRows = [...courseCategory]
+        const tempRows = [...courseCategory];
         tempRows[event.target.title][event.target.name] = event.target.value;
-        setCourseCategory(tempRows)
-    }
+        let total = sumAU(tempRows);
+        if(Number(total) > Number(100)){
+            tempRows[event.target.title][event.target.name] = event.target.value - (total - 100);
+        }
+
+        setCourseCategory(tempRows);
+
+    };
+
+    
 
     return(
         <div className = "container is-fluid">
