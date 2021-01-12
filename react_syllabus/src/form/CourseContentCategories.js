@@ -12,7 +12,7 @@ export default function CourseContentCategory(){
     const sumAU = (tempRows) =>{
         let total = Number(0);
         for (var i = 0; i<courseCategory.length;i++){
-        total+=Number(courseCategory[i].AU);
+            total+=Number(courseCategory[i].AU);
         }
         return total;
     };
@@ -31,7 +31,6 @@ export default function CourseContentCategory(){
         }
 
         setCourseCategory(tempRows);
-
     };
 
     

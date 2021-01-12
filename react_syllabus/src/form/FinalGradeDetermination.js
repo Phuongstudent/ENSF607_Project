@@ -14,12 +14,10 @@ export default function FinalGradeDetermination() {
         ]);
     }
 
-
     const sumWeight = () =>{
         return gradeRows.reduce((sum, currentValue) => sum + parseFloat(currentValue.weight), 0)
         
     }
-
 
     const updateRow = event => {
         const tempRows = [...gradeRows]
@@ -33,6 +31,10 @@ export default function FinalGradeDetermination() {
             tempRows[event.target.title][event.target.name] = event.target.value - (total - 100);
         }
 
+        if(event.target.name == "weight" && event.target.value == "") {
+            tempRows[event.target.title]["weight"] = 0
+        }
+
         setGradeRows(tempRows)
     }
 
@@ -41,7 +43,6 @@ export default function FinalGradeDetermination() {
         tempRows.splice(index, 1)
         setGradeRows(tempRows)
     }
-
 
     return (
         <div className = "container is-fluid">
