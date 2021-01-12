@@ -5,7 +5,7 @@ export default function LearningOutcomes(props){
 
     useEffect(() => {       
         if (!props.data) {
-            return
+            setLearningOutcomes([{outcome : " ", grad: "A1", level: "A"}])
         }
         else {
             let temp = props.data.learning_outcomes.split("%outcome%")
@@ -23,6 +23,9 @@ export default function LearningOutcomes(props){
             setLearningOutcomes(tempLearningOutcomes)
         }
     }, [props.data])
+
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     const addRow = () => {
         setLearningOutcomes([

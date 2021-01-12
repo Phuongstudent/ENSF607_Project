@@ -5,7 +5,7 @@ export default function FinalGradeDetermination(props) {
 
     useEffect(() => {       
         if (!props.data) {
-            return
+            setGradeRows([{component: " ", outcome: " ", weight: 0}])
         }
         else {
             let temp = props.data.grade_components.split("%outcome%")
@@ -23,6 +23,9 @@ export default function FinalGradeDetermination(props) {
             setGradeRows(tempGradeNotes)
         }
     }, [props.data])
+
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     const addRow = () => {
         setGradeRows([

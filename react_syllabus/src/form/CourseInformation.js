@@ -10,7 +10,12 @@ export default function CourseInformation(props) {
     
     useEffect(() => {       
         if (!props.data) {
-            return
+            setCourseCode("")
+            setCourseTitle("")
+            setCourseDescription("")
+            setCourseHours("")
+            setAcademicCredit("")
+            setCalendarReference("")
         }
         else {
             setCourseCode(props.data.course_code)
@@ -21,6 +26,9 @@ export default function CourseInformation(props) {
             setCalendarReference(props.data.course_reference)
         }
     }, [props.data])
+
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     return (
         <div className = "container is-fluid">

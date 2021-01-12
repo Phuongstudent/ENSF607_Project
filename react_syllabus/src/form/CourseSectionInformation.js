@@ -9,7 +9,11 @@ export default function CourseSectionInformation(props){
 
     useEffect(() => {       
         if (!props.data) {
-            return
+            setCourseSection([
+                {category: "Lecture", sections: "", hours: "", students: "lt5"},
+                {category: "Tutorial", sections: "", hours: "", students: "gt50"},
+                {category: "Lab", sections: "", hours: "", students: "20-50"}
+            ])
         }
         else {
             setCourseSection([
@@ -34,6 +38,9 @@ export default function CourseSectionInformation(props){
             ])
         }
     }, [props.data])
+
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     const updateRow = event => {
         const tempRows = [...courseSection]

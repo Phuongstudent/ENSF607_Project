@@ -5,12 +5,15 @@ export default function FinalGradeMarks(props) {
     
     useEffect(() => {       
         if (!props.data) {
-            return
+            setFinalGradeText("0 0 0 0 0 0 0 0 0 0 0".split(" "))
         }
         else {
             setFinalGradeText(props.data.grade_marks.split(" "))
         }
     }, [props.data])
+
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     const updateRow = event => {
         const tempGrades = [...finalGradeText]

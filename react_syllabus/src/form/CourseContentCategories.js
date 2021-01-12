@@ -48,6 +48,9 @@ export default function CourseContentCategory(props){
             ])
         }
     }, [props.data])
+    
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     const sumAU = (tempRows) =>{
         let total = Number(0);

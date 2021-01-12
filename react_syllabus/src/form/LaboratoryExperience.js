@@ -8,7 +8,10 @@ export default function LaboratoryExperience(props) {
 
     useEffect(() => {       
         if (!props.data) {
-            return
+            setLabType("")
+            setLabNumber("")
+            setSafetyTaught("")
+            setSafetyExamined("")
         }
         else {
             setLabType(props.data.lab_type)
@@ -17,6 +20,9 @@ export default function LaboratoryExperience(props) {
             setSafetyExamined(props.data.lab_safetyexaminer)
         }
     }, [props.data])
+
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     return (
         <div className = "container is-fluid">

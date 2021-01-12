@@ -5,7 +5,7 @@ export default function FinalGradeNotes(props) {
 
     useEffect(() => {       
         if (!props.data) {
-            return
+            setGradeNotes([""])
         }
         else {
             setGradeNotes(props.data.grade_notes.split("%note%"))
@@ -18,6 +18,9 @@ export default function FinalGradeNotes(props) {
             ""
         ]);
     }
+
+    const { saveFunction, saveIndex, saveFlag } = props
+    useEffect(() => saveFunction(saveIndex), [saveFlag])
 
     const updateNote = event => {
         const tempNotes = [...gradeNotes]
