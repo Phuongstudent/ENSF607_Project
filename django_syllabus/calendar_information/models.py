@@ -1,37 +1,37 @@
 from django.db import models
 
 class CalendarInformation(models.Model):
-    course_code = models.CharField(max_length = 50)
-    course_title = models.CharField(max_length = 50)
-    course_description = models.TextField()
-    course_hours = models.CharField(max_length = 50)
-    course_credit = models.CharField(max_length = 10)
-    course_reference = models.URLField(max_length = 200)
+    course_code = models.CharField(max_length = 50, blank = True)
+    course_title = models.CharField(max_length = 50, blank = True)
+    course_description = models.TextField(blank = True)
+    course_hours = models.CharField(max_length = 50, blank = True)
+    course_credit = models.CharField(max_length = 10, blank = True)
+    course_reference = models.CharField(max_length = 200, blank = True)
 
 class LearningOutcomes(models.Model):
     learning_outcomes = models.TextField()
 
-    content_math = models.CharField(max_length = 50)
-    content_naturalscience = models.CharField(max_length = 50)
-    content_complementarystudies = models.CharField(max_length = 50)
-    content_engineeringscience = models.CharField(max_length = 50)
-    content_engineeringdesign = models.CharField(max_length = 50)
+    content_math = models.CharField(max_length = 50, blank = True)
+    content_naturalscience = models.CharField(max_length = 50, blank = True)
+    content_complementarystudies = models.CharField(max_length = 50, blank = True)
+    content_engineeringscience = models.CharField(max_length = 50, blank = True)
+    content_engineeringdesign = models.CharField(max_length = 50, blank = True)
 
-    section_lecture = models.CharField(max_length = 50)
-    section_tutorial = models.CharField(max_length = 50)
-    section_lab = models.CharField(max_length = 50)
+    section_lecture = models.CharField(max_length = 50, blank = True)
+    section_tutorial = models.CharField(max_length = 50, blank = True)
+    section_lab = models.CharField(max_length = 50, blank = True)
 
-    lab_type = models.CharField(max_length = 10)
-    lab_number = models.CharField(max_length = 10)
-    lab_safetytaught = models.CharField(max_length = 10)
-    lab_safetyexaminer = models.CharField(max_length = 10)
+    lab_type = models.CharField(max_length = 10, blank = True)
+    lab_number = models.CharField(max_length = 10, blank = True)
+    lab_safetytaught = models.CharField(max_length = 10, blank = True)
+    lab_safetyexaminer = models.CharField(max_length = 10, blank = True)
 
 class FinalGradeDetermination(models.Model):
-    grade_components = models.TextField()
+    grade_components = models.TextField(blank = True)
 
-    grade_notes = models.TextField()
+    grade_notes = models.TextField(blank = True)
 
-    grade_marks = models.TextField()
+    grade_marks = models.TextField(blank = True)
 
 
 
