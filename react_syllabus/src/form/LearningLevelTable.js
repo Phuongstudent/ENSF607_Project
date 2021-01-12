@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 
 export default function LearningLevelTable(){
     return(
         <div className = "container is-fluid">
             <h5 className = "title is-5">Instruction Level Guideline</h5>
             <div>*The level at which the learning outcome is addressed in this course:</div>
-            <table table className = "table is-fullwidth">
+            <table className = "table is-fullwidth">
                 <tbody>
                     <tr>
                         <td>I (Introduced)</td>

@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function FinalGradeMarks() {
-    const [finalGradeText, setFinalGradeText] = useState("95 90 85 80 75 70 65 60 56 53 50".split(' '))
+export default function FinalGradeMarks(props) {
+    const [finalGradeText, setFinalGradeText] = useState("0 0 0 0 0 0 0 0 0 0 0".split(" "))
     
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            setFinalGradeText(props.data.grade_marks.split(" "))
+        }
+    }, [props.data])
+
     const updateRow = event => {
         const tempGrades = [...finalGradeText]
         tempGrades[event.target.title] = parseFloat(event.target.value)
@@ -27,7 +36,7 @@ export default function FinalGradeMarks() {
                 <thead>
                     <tr>
                         <th className = "has-text-centered">Letter Grade</th>
-                        <th className = "has-text-centered" colspan = "3">Total Mark (T)</th>
+                        <th className = "has-text-centered" colSpan = "3">Total Mark (T)</th>
                     </tr>        
                 </thead>
                 <tbody className = "has-text-centered">

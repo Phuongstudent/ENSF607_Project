@@ -1,11 +1,39 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-export default function CourseSectionInformation(){
+export default function CourseSectionInformation(props){
     const [courseSection, setCourseSection] = useState([
         {category: "Lecture", sections: "", hours: "", students: "lt5"},
         {category: "Tutorial", sections: "", hours: "", students: "gt50"},
         {category: "Lab", sections: "", hours: "", students: "20-50"}
     ]);
+
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            setCourseSection([
+                {
+                    category: "Lecture",
+                    sections: props.data.section_lecture.split("%i%")[0],
+                    hours: props.data.section_lecture.split("%i%")[1],
+                    students: props.data.section_lecture.split("%i%")[2]
+                },
+                {
+                    category: "Tutorial",
+                    sections: props.data.section_tutorial.split("%i%")[0],
+                    hours: props.data.section_tutorial.split("%i%")[1],
+                    students: props.data.section_tutorial.split("%i%")[2]
+                },
+                {
+                    category: "Lab",
+                    sections: props.data.section_lab.split("%i%")[0],
+                    hours: props.data.section_lab.split("%i%")[1],
+                    students: props.data.section_lab.split("%i%")[2]
+                }
+            ])
+        }
+    }, [props.data])
 
     const updateRow = event => {
         const tempRows = [...courseSection]

@@ -1,7 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function FinalGradeDetermination() {
+export default function FinalGradeDetermination(props) {
     const [gradeRows, setGradeRows] = useState([{component: " ", outcome: " ", weight: 0}])
+
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            let temp = props.data.grade_components.split("%outcome%")
+            let tempGradeNotes = []
+            for (let i = 0; i < temp.length; i++){
+                let tempIndex = temp[i].split("%i%")
+                tempGradeNotes = ([...tempGradeNotes, 
+                    {
+                        component: tempIndex[0],
+                        outcome: tempIndex[1],
+                        weight: tempIndex[2]
+                    }
+                ]);
+            }
+            setGradeRows(tempGradeNotes)
+        }
+    }, [props.data])
 
     const addRow = () => {
         setGradeRows([
@@ -15,8 +36,7 @@ export default function FinalGradeDetermination() {
     }
 
     const sumWeight = () =>{
-        return gradeRows.reduce((sum, currentValue) => sum + parseFloat(currentValue.weight), 0)
-        
+        return gradeRows.reduce((sum, currentValue) => sum + parseFloat(currentValue.weight), 0)   
     }
 
     const updateRow = event => {
@@ -27,14 +47,13 @@ export default function FinalGradeDetermination() {
         if(tempRows[event.target.title][event.target.name].length<1){
             tempRows[event.target.title][event.target.name] = 0;
         }
-        if(event.target.name == "weight" && total > 100){
+        if(event.target.name === "weight" && total > 100){
             tempRows[event.target.title][event.target.name] = event.target.value - (total - 100);
         }
 
-        if(event.target.name == "weight" && event.target.value == "") {
+        if(event.target.name === "weight" && event.target.value === "") {
             tempRows[event.target.title]["weight"] = 0
         }
-
         setGradeRows(tempRows)
     }
 

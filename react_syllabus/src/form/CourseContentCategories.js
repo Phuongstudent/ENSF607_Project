@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-export default function CourseContentCategory(){
+export default function CourseContentCategory(props){
     const [courseCategory, setCourseCategory] = useState([
         {category: "Math", element1 : "", element2: "", AU: 5},
         {category: "NaturalScience", element1 : "", element2: "", AU: 20},
@@ -8,6 +8,46 @@ export default function CourseContentCategory(){
         {category: "EngineeringScience", element1 : "", element2: "", AU: 20},
         {category: "EngineeringDesign", element1 : "", element2: "", AU: 20},
     ]);
+
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            setCourseCategory([
+                {
+                    category: "Math",
+                    element1: props.data.content_math.split("%i%")[0],
+                    element2: props.data.content_math.split("%i%")[1],
+                    AU: props.data.content_math.split("%i%")[2]
+                },
+                {
+                    category: "NaturalScience",
+                    element1: props.data.content_naturalscience.split("%i%")[0],
+                    element2: props.data.content_naturalscience.split("%i%")[1],
+                    AU: props.data.content_naturalscience.split("%i%")[2]
+                },
+                {
+                    category: "ComplementaryStudies",
+                    element1: props.data.content_complementarystudies.split("%i%")[0],
+                    element2: props.data.content_complementarystudies.split("%i%")[1],
+                    AU: props.data.content_complementarystudies.split("%i%")[2]
+                },
+                {
+                    category: "EngineeringScience",
+                    element1: "",
+                    element2: "",
+                    AU: props.data.content_engineeringscience
+                },
+                {
+                    category: "EngineeringDesign",
+                    element1: "",
+                    element2: "",
+                    AU: props.data.content_engineeringdesign
+                }
+            ])
+        }
+    }, [props.data])
 
     const sumAU = (tempRows) =>{
         let total = Number(0);
@@ -65,7 +105,7 @@ export default function CourseContentCategory(){
                             </select>  
                         </td>
                         <td>
-                            <select className = "select is-small is-fullwidth" value = {courseCategory[0].elemen2} name="element2" title = "0" onChange = {updateRow}>
+                            <select className = "select is-small is-fullwidth" value = {courseCategory[0].element2} name="element2" title = "0" onChange = {updateRow}>
                                 <option value="blank"></option>
                                 <option value="DiffCalcs">DiffCalcs</option>
                                 <option value="DiffEq">DiffEq</option>

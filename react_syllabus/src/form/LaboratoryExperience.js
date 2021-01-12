@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function LaboratoryExperience() {
+export default function LaboratoryExperience(props) {
     const [labType, setLabType]  = useState("")
     const [labNumber, setLabNumber] = useState("")
     const [safetyTaught, setSafetyTaught] = useState("")
     const [safetyExamined, setSafetyExamined] = useState("")
+
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            setLabType(props.data.lab_type)
+            setLabNumber(props.data.lab_number)
+            setSafetyTaught(props.data.lab_safetytaught)
+            setSafetyExamined(props.data.lab_safetyexaminer)
+        }
+    }, [props.data])
 
     return (
         <div className = "container is-fluid">
@@ -15,7 +27,7 @@ export default function LaboratoryExperience() {
                 <tr>
                     <td>Lab Type</td>
                         <td>
-                            <select className = "select is-small is-fullwidth" value = {labType} name="labType" onChange = {event => setLabType(event.target.value)}>
+                            <select className = "select is-small is-fullwidth" value = {labType} onChange = {event => setLabType(event.target.value)}>
                                 <option value="blank"></option>
                                 <option value="Hands-on">Hands-on</option>
                                 <option value="Simulation">Simulation</option>
@@ -50,7 +62,7 @@ export default function LaboratoryExperience() {
                         </td>
                     </tr>
                     <tr>
-                        <td>Lab Safety Examined</td>
+                        <td>Lab Safety Examined?</td>
                         <td>
                             <input
                                 className = "input is-small"

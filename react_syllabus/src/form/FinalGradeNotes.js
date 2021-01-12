@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function FinalGradeNotes() {
+export default function FinalGradeNotes(props) {
     const [gradeNotes, setGradeNotes] = useState([""])
+
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            setGradeNotes(props.data.grade_notes.split("%note%"))
+        }
+    }, [props.data])
 
     const addNote = event => {
         setGradeNotes([
@@ -32,7 +41,7 @@ export default function FinalGradeNotes() {
                             <td className = "is-vcentered">{String.fromCharCode(97+index)})</td>     
                             <td>
                                 <textarea
-                                    className = "textarea"
+                                    className = "textarea is-small"
                                     name = "new_note"
                                     title = {index}
                                     value = {row}

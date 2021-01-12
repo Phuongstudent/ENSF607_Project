@@ -1,7 +1,28 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-export default function LearningOutcomes(){
+export default function LearningOutcomes(props){
     const [learningOutcomes, setLearningOutcomes] = useState([{outcome : " ", grad: "A1", level: "A"}])
+
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            let temp = props.data.learning_outcomes.split("%outcome%")
+            let tempLearningOutcomes = []
+            for (let i = 0; i < temp.length; i++){
+                let tempIndex = temp[i].split("%i%")
+                tempLearningOutcomes = ([...tempLearningOutcomes, 
+                    {
+                        outcome: tempIndex[0],
+                        grad: tempIndex[1],
+                        level: tempIndex[2]
+                    }
+                ]);
+            }
+            setLearningOutcomes(tempLearningOutcomes)
+        }
+    }, [props.data])
 
     const addRow = () => {
         setLearningOutcomes([
@@ -34,16 +55,16 @@ export default function LearningOutcomes(){
             <table className = "table is-fullwidth">
                 <thead>
                     <tr>
-                        <th className = "has-text-centered">Learning Outcome</th>
+                        <th className = "has-text-centered" width = "1px">Learning Outcome</th>
                         <th className = "has-text-centered">Graduate Attribute</th>
-                        <th className = "has-text-centered">Instruction Level</th>
-                        <th></th>
+                        <th className = "has-text-centered" width = "1px">Instruction Level</th>
+                        <th width = "1px">{" "}</th>
                     </tr>
                 </thead>
                 {learningOutcomes.map((row,index) => (
                     <tbody key={index}>
                         <tr className = "has-text-centered">
-                            <td className = "is-vcentered" rowspan = "2">{index + 1}</td>
+                            <td className = "is-vcentered" rowSpan = "2">{index + 1}</td>
                             <td>        
                                 <input
                                     className = "input is-small"
@@ -54,14 +75,14 @@ export default function LearningOutcomes(){
                                     onChange = {updateRow}
                                 />
                             </td>
-                            <td className = "is-vcentered" rowspan = "2" >             
+                            <td className = "is-vcentered" rowSpan = "2">             
                                 <select className = "select is-small" value = {row.level} name= "level" title = {index} onChange ={updateRow}>
                                     <option value="I">I (Introduction)</option>
                                     <option value="A">A (Applied)</option>
                                     <option value="D">D (Developed)</option>
                                 </select>
                             </td>
-                            <td className = "is-vcentered" rowspan = "2">
+                            <td className = "is-vcentered" rowSpan = "2">
                                 <button className = "button is-small" onClick = {deleteRow(index)}>Remove</button>
                             </td>
                         </tr>

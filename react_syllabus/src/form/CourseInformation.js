@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function CourseInformation() {
+export default function CourseInformation(props) {
     const [courseCode, setCourseCode] = useState("");
     const [courseTitle, setCourseTitle] = useState("");
     const [courseDescription, setCourseDescription] = useState("");
@@ -8,13 +8,27 @@ export default function CourseInformation() {
     const [academicCredit, setAcademicCredit] = useState("");
     const [calendarReference, setCalendarReference] = useState("");
     
+    useEffect(() => {       
+        if (!props.data) {
+            return
+        }
+        else {
+            setCourseCode(props.data.course_code)
+            setCourseTitle(props.data.course_title)
+            setCourseDescription(props.data.course_description)
+            setCourseHours(props.data.course_hours)
+            setAcademicCredit(props.data.course_credit)
+            setCalendarReference(props.data.course_reference)
+        }
+    }, [props.data])
+
     return (
         <div className = "container is-fluid">
-            <h4 className = "title is-4"> Calendar Information</h4>
+            <h4 className = "title is-4">Calendar Information</h4>
             <label className = "label">Course Code</label>
             <div className = "field">
                 <input
-                    className = "input"
+                    className = "input is-small"
                     name = "courseCode"
                     placeholder = "Course Code"
                     value = {courseCode}
@@ -24,7 +38,7 @@ export default function CourseInformation() {
             <label className = "label">Course Title</label>
             <div className = "field">
                 <input
-                    className = "input"
+                    className = "input is-small"
                     name = "courseTitle"
                     placeholder = "Course Title"
                     value = {courseTitle}
@@ -34,7 +48,7 @@ export default function CourseInformation() {
             <label className = "label">Course Description</label>
             <div className = "field">
                 <textarea
-                    className = "textarea"
+                    className = "textarea is-small"
                     name = "courseDescription"
                     placeholder = "Course Description"
                     value = {courseDescription}
@@ -44,7 +58,7 @@ export default function CourseInformation() {
             <label className = "label">Course Hours</label>
             <div className = "field">
                 <input
-                    className = "input"
+                    className = "input is-small"
                     name = "courseHours"
                     placeholder = "Course Hours"
                     value = {courseHours}
@@ -54,7 +68,7 @@ export default function CourseInformation() {
             <label className = "label">Academic Credit</label>
             <div className = "field">
                 <input
-                    className = "input"
+                    className = "input is-small"
                     name = "academicCredit"
                     placeholder = "Academic Credit"
                     value = {academicCredit}
@@ -64,7 +78,7 @@ export default function CourseInformation() {
             <label className = "label">Calendar Reference</label>
             <div className = "field">
                 <input
-                    className = "input"
+                    className = "input is-small"
                     name = "calendarReference"
                     placeholder = "Calendar Reference"
                     value = {calendarReference}
