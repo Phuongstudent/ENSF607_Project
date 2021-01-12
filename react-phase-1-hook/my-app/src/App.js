@@ -5,6 +5,7 @@ import LearningOutcome from "./components/LearningOutcome";
 import CourseContentCategory from "./components/CourseContentCategory";
 import CourseSectionInformation from "./components/CourseSectionInformation";
 import CourseInformation from "./components/CourseInformation";
+import Navigation from "./components/Navigation";
 
 
 
@@ -13,26 +14,8 @@ function App() {
   return (
     <div>
       <div>
-        <CourseInformation/>
-      </div>
-      <br>
-      </br>
-      <div>
-        <LearningOutcome/>
-      </div>
-      <br>
-      </br>
-      <div>
-        <CourseContentCategory/>
-      </div>
-      <br>
-      </br>
-      <div>
-        <CourseSectionInformation/>
-      </div>
-      <br>
-      </br>
-    
+        <Navigation/>
+      </div>  
     </div>
  
 
