@@ -5,7 +5,8 @@ export default function FinalGradeMarks(props) {
     
     useEffect(() => {       
         if (!props.data) {
-            setFinalGradeText("0 0 0 0 0 0 0 0 0 0 0".split(" "))
+            return
+            // setFinalGradeText("0 0 0 0 0 0 0 0 0 0 0".split(" "))
         }
         else {
             setFinalGradeText(props.data.grade_marks.split(" "))

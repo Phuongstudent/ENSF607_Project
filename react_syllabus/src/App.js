@@ -13,7 +13,7 @@ import FinalGradeDetermination from "./form/FinalGradeDetermination";
 import FinalGradeNotes from "./form/FinalGradeNotes";
 import FinalGradeMarks from "./form/FinalGradeMarks";
 
-import Navigation from "./Navigation";
+// import Navigation from "./Navigation";
 
 import "./App.css"
 
@@ -33,6 +33,10 @@ function App() {
   const [calendarData, setCalendarData] = useState("")
   const [learningData, setLearningData] = useState("")
   const [gradesData, setGradesData] = useState("")
+
+  const [calendarSave, setCalendarSave] = useState([])
+  const [learningSave, setLearningSave] = useState([])
+  const [gradesSave, setGradesSave] = useState([])
 
   useEffect(() => {
     const fetchData = async() => {
@@ -62,11 +66,85 @@ function App() {
   useEffect(() => {
     setGradesData(gradesAPI[index])
   }, [index, gradesAPI])
-
-  const setSaveStatusByIndex = index => {
+  
+  const setSaveStatusByIndex = (index, data) => {
     let tempSaveStatus = [...saveStatus]
     tempSaveStatus[index] = 1;
     setSaveStatus(tempSaveStatus)
+
+    if (index === 0) {
+      setCalendarSave(data)
+    }
+    else if (index >= 1 && index <= 4) {
+      let tempSave = [...learningSave, data]
+      setLearningSave(tempSave)
+    } 
+    else if (index >= 5 && index <= 7) {
+      let tempSave = [...gradesSave, data]
+      setGradesSave(tempSave)
+    }
+
+    for (let i = 0; i < saveStatus.length; i++) {
+      if (saveStatus[i] === 1) {
+        return
+      }
+    }
+
+    putAPI(calendarData.url.split("/")[5], calendarSave)
+    putAPI(learningData.url.split("/")[5], learningSave)
+    putAPI(gradesData.url.split("/")[5], gradesSave)
+
+    setCalendarSave([])
+    setLearningSave([])
+    setGradesSave([])
+  }
+
+  const exportToPDF = () => {
+
+  }
+
+  const putAPI = (url, data) => {
+    let url_index = url + index + "/"
+    axios.put(url_index, data)
+  }
+
+  const postAPI = () => {
+     axios.post(calendar, {
+       course_code: '',
+       course_title: '',
+       course_description: '',
+       course_hours: '',
+       course_credit: '',
+       course_reference: ''
+     })
+     axios.post(learning, {
+       learning_outcomes: '',
+       content_math: '',
+       content_naturalscience: '',
+       content_complementarystudies: '',
+       content_engineeringscience: '0',
+       content_engineeringdesign: '0',
+       section_lecture: ' %i% %i%blank',
+       section_tutorial: ' %i% %i%blank',
+       section_lab: ' %i% %i%blank',
+       lab_type: '',
+       lab_number: '',
+       lab_safetytaught: '',
+       lab_safetyexaminer: ''
+     })
+     axios.post(grades, {
+       grade_components: ' %i% %i% ',
+       grade_notes: '',
+       grade_marks: '0 0 0 0 0 0 0 0 0 0 0'
+     })
+    scrollToTop()
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
   const renderSaveButton = () => {
@@ -81,7 +159,25 @@ function App() {
                   setSaveFlag(!saveFlag)
                 }
               }>Save changes</button>
+              <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
             </div>
+            <div className = "buttons is-centered">
+              <button className ="button is-primary" onClick = {() => {
+                if (index > 0) {
+                  setIndex(index - 1)
+                }
+                }}>Prev</button>
+              <button className ="button is-primary" onClick = {postAPI}>Create New Syllabus</button>
+              <button className ="button is-primary" onClick = {() => {
+                if (index < calendarAPI.length - 1) {
+                  setIndex(index + 1)
+                }
+                }}>Next</button>
+            </div>  
+            <div className = "buttons is-centered">
+              <button className = "button is-success" onClick = {scrollToTop}>Back to Top</button>
+              <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
+            </div>          
           </footer>
         )
       }
@@ -101,10 +197,6 @@ function App() {
 
       <Header/>
 
-      <button className = "button is-small" onClick = {() => {
-        setIndex(index + 1)}
-      }>Increase Index</button>
-      
       <CourseInformation data = {calendarData} saveIndex = {0} saveFlag = {saveFlag} saveFunction = {setSaveStatusByIndex}/> 
 
       <LearningOutcomes data = {learningData} saveIndex = {1} saveFlag = {saveFlag} saveFunction = {setSaveStatusByIndex}/>
@@ -118,7 +210,7 @@ function App() {
       <FinalGradeNotes data = {gradesData} saveIndex = {6} saveFlag = {saveFlag} saveFunction = {setSaveStatusByIndex}/>
       <FinalGradeMarks data = {gradesData} saveIndex = {7} saveFlag = {saveFlag} saveFunction = {setSaveStatusByIndex}/>
 
-      renderSaveButton()
+      {renderSaveButton()}
 
       {/* <Navigation/> */}
 

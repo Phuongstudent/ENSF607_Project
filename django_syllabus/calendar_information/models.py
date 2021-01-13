@@ -9,7 +9,7 @@ class CalendarInformation(models.Model):
     course_reference = models.CharField(max_length = 200, blank = True)
 
 class LearningOutcomes(models.Model):
-    learning_outcomes = models.TextField()
+    learning_outcomes = models.TextField(blank = True)
 
     content_math = models.CharField(max_length = 100, blank = True)
     content_naturalscience = models.CharField(max_length = 100, blank = True)
