@@ -1,41 +1,7 @@
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 
 export default function LearningOutcomes(props){
-    const [learningOutcomes, setLearningOutcomes] = useState([{outcome : " ", grad: "A1", level: "A"}])
-
-    useEffect(() => {       
-        if (!props.data) {
-            setLearningOutcomes([{outcome : " ", grad: "A1", level: "A"}])
-        }
-        else {
-            let temp = props.data.learning_outcomes.split("%outcome%")
-            let tempLearningOutcomes = []
-            for (let i = 0; i < temp.length; i++){
-                let tempIndex = temp[i].split("%i%")
-                tempLearningOutcomes = ([...tempLearningOutcomes, 
-                    {
-                        outcome: tempIndex[0],
-                        grad: tempIndex[1],
-                        level: tempIndex[2]
-                    }
-                ]);
-            }
-            setLearningOutcomes(tempLearningOutcomes)
-        }
-    }, [props.data])
-
-    const afterFirstRender = useRef(false);
-    const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => {
-        if (!afterFirstRender.current) {
-            afterFirstRender.current = true
-        }
-        else {
-            saveFunction(saveIndex, {
-                data: "here"
-            })
-        }
-    }, [saveFlag])
+    const { learningOutcomes, setLearningOutcomes } = props
 
     const addRow = () => {
         setLearningOutcomes([

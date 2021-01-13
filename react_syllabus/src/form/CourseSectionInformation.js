@@ -1,56 +1,7 @@
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 
 export default function CourseSectionInformation(props){
-    const [courseSection, setCourseSection] = useState([
-        {category: "Lecture", sections: "", hours: "", students: "lt5"},
-        {category: "Tutorial", sections: "", hours: "", students: "gt50"},
-        {category: "Lab", sections: "", hours: "", students: "20-50"}
-    ]);
-
-    useEffect(() => {       
-        if (!props.data) {
-            setCourseSection([
-                {category: "Lecture", sections: "", hours: "", students: "lt5"},
-                {category: "Tutorial", sections: "", hours: "", students: "gt50"},
-                {category: "Lab", sections: "", hours: "", students: "20-50"}
-            ])
-        }
-        else {
-            setCourseSection([
-                {
-                    category: "Lecture",
-                    sections: props.data.section_lecture.split("%i%")[0],
-                    hours: props.data.section_lecture.split("%i%")[1],
-                    students: props.data.section_lecture.split("%i%")[2]
-                },
-                {
-                    category: "Tutorial",
-                    sections: props.data.section_tutorial.split("%i%")[0],
-                    hours: props.data.section_tutorial.split("%i%")[1],
-                    students: props.data.section_tutorial.split("%i%")[2]
-                },
-                {
-                    category: "Lab",
-                    sections: props.data.section_lab.split("%i%")[0],
-                    hours: props.data.section_lab.split("%i%")[1],
-                    students: props.data.section_lab.split("%i%")[2]
-                }
-            ])
-        }
-    }, [props.data])
-
-    const afterFirstRender = useRef(false);
-    const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => {
-        if (!afterFirstRender.current) {
-            afterFirstRender.current = true
-        }
-        else {
-            saveFunction(saveIndex, {
-                data: "here"
-            })
-        }
-    }, [saveFlag])
+    const { courseSection, setCourseSection } = props
 
     const updateRow = event => {
         const tempRows = [...courseSection]

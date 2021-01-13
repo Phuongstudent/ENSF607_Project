@@ -1,49 +1,15 @@
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 
 export default function CourseInformation(props) {
-    const [courseCode, setCourseCode] = useState("");
-    const [courseTitle, setCourseTitle] = useState("");
-    const [courseDescription, setCourseDescription] = useState("");
-    const [courseHours, setCourseHours] = useState("");
-    const [academicCredit, setAcademicCredit] = useState("");
-    const [calendarReference, setCalendarReference] = useState("");
-    
-    useEffect(() => {       
-        if (!props.data) {
-            setCourseCode("")
-            setCourseTitle("")
-            setCourseDescription("")
-            setCourseHours("")
-            setAcademicCredit("")
-            setCalendarReference("")
-        }
-        else {
-            setCourseCode(props.data.course_code)
-            setCourseTitle(props.data.course_title)
-            setCourseDescription(props.data.course_description)
-            setCourseHours(props.data.course_hours)
-            setAcademicCredit(props.data.course_credit)
-            setCalendarReference(props.data.course_reference)
-        }
-    }, [props.data])
-
-    const afterFirstRender = useRef(false);
-    const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => {
-        if (!afterFirstRender.current) {
-            afterFirstRender.current = true
-        }
-        else {
-            saveFunction(saveIndex, {
-                course_code: courseCode,
-                course_title: courseTitle,
-                course_description: courseDescription,
-                course_hours: courseHours,
-                course_credit: academicCredit,
-                course_reference: calendarReference
-            })
-        }
-    }, [saveFlag])
+     const { 
+        courseCode, setCourseCode, 
+        courseTitle, setCourseTitle, 
+        courseDescription, setCourseDescription,
+        courseHours, setCourseHours, 
+        academicCredit, setAcademicCredit, 
+        calendarReference, 
+        setCalendarReference
+    } = props
 
     return (
         <div className = "container is-fluid">

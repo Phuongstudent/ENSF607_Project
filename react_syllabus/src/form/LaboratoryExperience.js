@@ -1,38 +1,12 @@
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 
-export default function LaboratoryExperience(props) {
-    const [labType, setLabType]  = useState("")
-    const [labNumber, setLabNumber] = useState("")
-    const [safetyTaught, setSafetyTaught] = useState("")
-    const [safetyExamined, setSafetyExamined] = useState("")
-
-    useEffect(() => {       
-        if (!props.data) {
-            setLabType("")
-            setLabNumber("")
-            setSafetyTaught("")
-            setSafetyExamined("")
-        }
-        else {
-            setLabType(props.data.lab_type)
-            setLabNumber(props.data.lab_number)
-            setSafetyTaught(props.data.lab_safetytaught)
-            setSafetyExamined(props.data.lab_safetyexaminer)
-        }
-    }, [props.data])
-
-    const afterFirstRender = useRef(false);
-    const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => {
-        if (!afterFirstRender.current) {
-            afterFirstRender.current = true
-        }
-        else {
-            saveFunction(saveIndex, {
-                data: "here"
-            })
-        }
-    }, [saveFlag])
+export default function LaboratoryExperience(props) {   
+    const { 
+        labType, setLabType,
+        labNumber, setLabNumber,
+        safetyTaught, setSafetyTaught,
+        safetyExamined, setSafetyExamined
+    } = props
 
     return (
         <div className = "container is-fluid">

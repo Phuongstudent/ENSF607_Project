@@ -1,41 +1,7 @@
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 
 export default function FinalGradeDetermination(props) {
-    const [gradeRows, setGradeRows] = useState([{component: " ", outcome: " ", weight: 0}])
-
-    useEffect(() => {       
-        if (!props.data) {
-            setGradeRows([{component: " ", outcome: " ", weight: 0}])
-        }
-        else {
-            let temp = props.data.grade_components.split("%outcome%")
-            let tempGradeNotes = []
-            for (let i = 0; i < temp.length; i++){
-                let tempIndex = temp[i].split("%i%")
-                tempGradeNotes = ([...tempGradeNotes, 
-                    {
-                        component: tempIndex[0],
-                        outcome: tempIndex[1],
-                        weight: tempIndex[2]
-                    }
-                ]);
-            }
-            setGradeRows(tempGradeNotes)
-        }
-    }, [props.data])
-
-    const afterFirstRender = useRef(false);
-    const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => {
-        if (!afterFirstRender.current) {
-            afterFirstRender.current = true
-        }
-        else {
-            saveFunction(saveIndex, {
-                data: "here"
-            })
-        }
-    }, [saveFlag])
+    const { gradeRows, setGradeRows } = props
 
     const addRow = () => {
         setGradeRows([

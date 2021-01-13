@@ -1,66 +1,7 @@
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 
-export default function CourseContentCategory(props){
-    const [courseCategory, setCourseCategory] = useState([
-        {category: "Math", element1 : "", element2: "", AU: 5},
-        {category: "NaturalScience", element1 : "", element2: "", AU: 20},
-        {category: "ComplementaryStudies", element1 : "", element2: "", AU: 20},
-        {category: "EngineeringScience", element1 : "", element2: "", AU: 20},
-        {category: "EngineeringDesign", element1 : "", element2: "", AU: 20},
-    ]);
-
-    useEffect(() => {       
-        if (!props.data) {
-            return
-        }
-        else {
-            setCourseCategory([
-                {
-                    category: "Math",
-                    element1: props.data.content_math.split("%i%")[0],
-                    element2: props.data.content_math.split("%i%")[1],
-                    AU: props.data.content_math.split("%i%")[2]
-                },
-                {
-                    category: "NaturalScience",
-                    element1: props.data.content_naturalscience.split("%i%")[0],
-                    element2: props.data.content_naturalscience.split("%i%")[1],
-                    AU: props.data.content_naturalscience.split("%i%")[2]
-                },
-                {
-                    category: "ComplementaryStudies",
-                    element1: props.data.content_complementarystudies.split("%i%")[0],
-                    element2: props.data.content_complementarystudies.split("%i%")[1],
-                    AU: props.data.content_complementarystudies.split("%i%")[2]
-                },
-                {
-                    category: "EngineeringScience",
-                    element1: "",
-                    element2: "",
-                    AU: props.data.content_engineeringscience
-                },
-                {
-                    category: "EngineeringDesign",
-                    element1: "",
-                    element2: "",
-                    AU: props.data.content_engineeringdesign
-                }
-            ])
-        }
-    }, [props.data])
-    
-    const afterFirstRender = useRef(false);
-    const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => {
-        if (!afterFirstRender.current) {
-            afterFirstRender.current = true
-        }
-        else {
-            saveFunction(saveIndex, {
-                data: "here"
-            })
-        }
-    }, [saveFlag])
+export default function CourseContentCategory(props){ 
+    const { courseCategory, setCourseCategory } = props
 
     const sumAU = (tempRows) =>{
         let total = Number(0);
@@ -85,8 +26,6 @@ export default function CourseContentCategory(props){
 
         setCourseCategory(tempRows);
     };
-
-    
 
     return(
         <div className = "container is-fluid">
@@ -136,6 +75,7 @@ export default function CourseContentCategory(props){
                                 name = "AU"
                                 type= "number"
                                 title = "0"
+                                min = "0"
                                 value = {courseCategory[0].AU}
                                 onChange = {updateRow}
                             />
@@ -167,6 +107,7 @@ export default function CourseContentCategory(props){
                                 name = "AU"
                                 type= "number"
                                 title = "1"
+                                min = "0"
                                 value = {courseCategory[1].AU}
                                 onChange = {updateRow}
                             />
@@ -204,6 +145,7 @@ export default function CourseContentCategory(props){
                                 name = "AU"
                                 type= "number"
                                 title = "2"
+                                min = "0"
                                 value = {courseCategory[2].AU}
                                 onChange = {updateRow}
                             />
