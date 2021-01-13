@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import CalendarInformation
 from .models import LearningOutcomes
 from .models import FinalGradeDetermination
-
+from .models import SyllabusTable
 
 class CalendarInformationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -19,4 +19,7 @@ class FinalGradeDeterminationSerializer(serializers.HyperlinkedModelSerializer):
         model = FinalGradeDetermination
         fields = '__all__'
 
-
+class SyllabusTableSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = SyllabusTable
+        fields = '__all__'

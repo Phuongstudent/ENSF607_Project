@@ -1,5 +1,9 @@
 from django.db import models
 
+class SyllabusTable(models.Model):
+    syllabus_name = models.CharField(max_length = 100, blank = False)
+    syllabus_number = models.IntegerField()
+
 class CalendarInformation(models.Model):
     course_code = models.CharField(max_length = 100, blank = True)
     course_title = models.CharField(max_length = 100, blank = True)
