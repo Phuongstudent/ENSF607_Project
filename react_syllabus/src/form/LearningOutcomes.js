@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 
 export default function LearningOutcomes(props){
     const [learningOutcomes, setLearningOutcomes] = useState([{outcome : " ", grad: "A1", level: "A"}])
@@ -24,8 +24,18 @@ export default function LearningOutcomes(props){
         }
     }, [props.data])
 
+    const afterFirstRender = useRef(false);
     const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => saveFunction(saveIndex), [saveFlag])
+    useEffect(() => {
+        if (!afterFirstRender.current) {
+            afterFirstRender.current = true
+        }
+        else {
+            saveFunction(saveIndex, {
+                data: "here"
+            })
+        }
+    }, [saveFlag])
 
     const addRow = () => {
         setLearningOutcomes([

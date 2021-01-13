@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState, useEffect, useRef} from "react";
 
 export default function CourseInformation(props) {
     const [courseCode, setCourseCode] = useState("");
@@ -27,8 +27,23 @@ export default function CourseInformation(props) {
         }
     }, [props.data])
 
+    const afterFirstRender = useRef(false);
     const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => saveFunction(saveIndex), [saveFlag])
+    useEffect(() => {
+        if (!afterFirstRender.current) {
+            afterFirstRender.current = true
+        }
+        else {
+            saveFunction(saveIndex, {
+                course_code: courseCode,
+                course_title: courseTitle,
+                course_description: courseDescription,
+                course_hours: courseHours,
+                course_credit: academicCredit,
+                course_reference: calendarReference
+            })
+        }
+    }, [saveFlag])
 
     return (
         <div className = "container is-fluid">

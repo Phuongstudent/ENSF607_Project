@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from "react";
 
 export default function LaboratoryExperience(props) {
     const [labType, setLabType]  = useState("")
@@ -21,8 +21,18 @@ export default function LaboratoryExperience(props) {
         }
     }, [props.data])
 
+    const afterFirstRender = useRef(false);
     const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => saveFunction(saveIndex), [saveFlag])
+    useEffect(() => {
+        if (!afterFirstRender.current) {
+            afterFirstRender.current = true
+        }
+        else {
+            saveFunction(saveIndex, {
+                data: "here"
+            })
+        }
+    }, [saveFlag])
 
     return (
         <div className = "container is-fluid">

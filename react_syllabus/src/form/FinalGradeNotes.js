@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef} from "react";
 
 export default function FinalGradeNotes(props) {
     const [gradeNotes, setGradeNotes] = useState([""])
@@ -19,8 +19,18 @@ export default function FinalGradeNotes(props) {
         ]);
     }
 
+    const afterFirstRender = useRef(false);
     const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => saveFunction(saveIndex), [saveFlag])
+    useEffect(() => {
+        if (!afterFirstRender.current) {
+            afterFirstRender.current = true
+        }
+        else {
+            saveFunction(saveIndex, {
+                data: "here"
+            })
+        }
+    }, [saveFlag])
 
     const updateNote = event => {
         const tempNotes = [...gradeNotes]

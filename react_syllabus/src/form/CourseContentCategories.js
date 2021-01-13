@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 
 export default function CourseContentCategory(props){
     const [courseCategory, setCourseCategory] = useState([
@@ -49,8 +49,18 @@ export default function CourseContentCategory(props){
         }
     }, [props.data])
     
+    const afterFirstRender = useRef(false);
     const { saveFunction, saveIndex, saveFlag } = props
-    useEffect(() => saveFunction(saveIndex), [saveFlag])
+    useEffect(() => {
+        if (!afterFirstRender.current) {
+            afterFirstRender.current = true
+        }
+        else {
+            saveFunction(saveIndex, {
+                data: "here"
+            })
+        }
+    }, [saveFlag])
 
     const sumAU = (tempRows) =>{
         let total = Number(0);

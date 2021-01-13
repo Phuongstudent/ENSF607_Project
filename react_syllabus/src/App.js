@@ -17,7 +17,7 @@ import FinalGradeMarks from "./form/FinalGradeMarks";
 
 import "./App.css"
 
-function App() {
+export default function App() {
   const url = "http://localhost:8000/api/"
   const calendar = url + "calendar/"
   const learning = url + "learning/"
@@ -26,8 +26,7 @@ function App() {
   const [calendarAPI, setCalendarAPI] = useState("")
   const [learningAPI, setLearningAPI] = useState("")
   const [gradesAPI, setGradesAPI] = useState("")
-  const [saveStatus, setSaveStatus] = useState([1, 1, 1, 1, 1, 1, 1, 1])
-  const [saveFlag, setSaveFlag] = useState(0)
+  const [saveStatus, setSaveStatus] = useState(8)
   const [index, setIndex] = useState(0)
 
   const [calendarData, setCalendarData] = useState("")
@@ -37,6 +36,9 @@ function App() {
   const [calendarSave, setCalendarSave] = useState([])
   const [learningSave, setLearningSave] = useState([])
   const [gradesSave, setGradesSave] = useState([])
+
+  const [saveFlag, setSaveFlag] = useState(0)
+  const [queryFlag, setQueryFlag] = useState(0)
 
   useEffect(() => {
     const fetchData = async() => {
@@ -53,7 +55,7 @@ function App() {
         .catch(() => console.error("API Error"));
     }
     fetchData()
-  }, [calendar, learning, grades])
+  }, [calendar, learning, grades, queryFlag])
 
   useEffect(() => {
     setCalendarData(calendarAPI[index])
@@ -67,44 +69,49 @@ function App() {
     setGradesData(gradesAPI[index])
   }, [index, gradesAPI])
   
-  const setSaveStatusByIndex = (index, data) => {
-    let tempSaveStatus = [...saveStatus]
-    tempSaveStatus[index] = 1;
-    setSaveStatus(tempSaveStatus)
 
-    if (index === 0) {
+  const setSaveStatusByIndex = (saveIndex, data) => { // TODO
+    setSaveStatus(saveStatus + 1)
+
+    if (saveIndex === 0) {
       setCalendarSave(data)
     }
-    else if (index >= 1 && index <= 4) {
-      let tempSave = [...learningSave, data]
-      setLearningSave(tempSave)
+
+    else if (saveIndex >= 1 && saveIndex <= 4) {
+      setLearningSave(...learningSave, data)
     } 
-    else if (index >= 5 && index <= 7) {
-      let tempSave = [...gradesSave, data]
-      setGradesSave(tempSave)
+    else if (saveIndex >= 5 && saveIndex <= 7) {
+      setGradesSave(...gradesSave, data)
     }
 
-    for (let i = 0; i < saveStatus.length; i++) {
-      if (saveStatus[i] === 1) {
-        return
-      }
+    console.log(saveStatus)
+    console.log(calendarSave)
+
+    if (saveStatus < 8) {
+      return
     }
 
-    putAPI(calendarData.url.split("/")[5], calendarSave)
-    putAPI(learningData.url.split("/")[5], learningSave)
-    putAPI(gradesData.url.split("/")[5], gradesSave)
-
+    // putAPI(calendarData.url.split("/")[5], calendar, calendarSave)
+    // putAPI(learningData.url.split("/")[5], learning, learningSave)
+    // putAPI(gradesData.url.split("/")[5], grades, gradesSave)
+    
     setCalendarSave([])
     setLearningSave([])
     setGradesSave([])
+
+    setQueryFlag(!queryFlag)
   }
 
   const exportToPDF = () => {
 
   }
 
-  const putAPI = (url, data) => {
-    let url_index = url + index + "/"
+  const putAPI = (putIndex, apiURL, data) => {
+    let url_index = apiURL + putIndex + "/"
+
+    console.log(url_index)
+    console.log(data)
+
     axios.put(url_index, data)
   }
 
@@ -119,9 +126,9 @@ function App() {
      })
      axios.post(learning, {
        learning_outcomes: '',
-       content_math: '',
-       content_naturalscience: '',
-       content_complementarystudies: '',
+       content_math: 'blank%i%blank%i%0',
+       content_naturalscience: 'blank%i%blank%i%0',
+       content_complementarystudies: 'blank%i%blank%i%0',
        content_engineeringscience: '0',
        content_engineeringdesign: '0',
        section_lecture: ' %i% %i%blank',
@@ -138,6 +145,9 @@ function App() {
        grade_marks: '0 0 0 0 0 0 0 0 0 0 0'
      })
     scrollToTop()
+
+    setQueryFlag(!queryFlag)
+    setIndex(calendarAPI.length)
   }
 
   const scrollToTop = () => {
@@ -148,39 +158,37 @@ function App() {
   }
 
   const renderSaveButton = () => {
-    for (let i = 0; i < saveStatus.length; i++) {
-      if (saveStatus[i] === 1) {
-        return (
-          <footer className ="footer">
-            <div className = "buttons is-centered">
-              <button className ="button is-success" onClick = {() => 
-                {
-                  setSaveStatus([0, 0, 0, 0, 0, 0, 0, 0]) 
-                  setSaveFlag(!saveFlag)
-                }
-              }>Save changes</button>
-              <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
-            </div>
-            <div className = "buttons is-centered">
-              <button className ="button is-primary" onClick = {() => {
-                if (index > 0) {
-                  setIndex(index - 1)
-                }
-                }}>Prev</button>
-              <button className ="button is-primary" onClick = {postAPI}>Create New Syllabus</button>
-              <button className ="button is-primary" onClick = {() => {
-                if (index < calendarAPI.length - 1) {
-                  setIndex(index + 1)
-                }
-                }}>Next</button>
-            </div>  
-            <div className = "buttons is-centered">
-              <button className = "button is-success" onClick = {scrollToTop}>Back to Top</button>
-              <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
-            </div>          
-          </footer>
-        )
-      }
+    if (saveStatus === 8) {
+      return (
+        <footer className ="footer">
+          <div className = "buttons is-centered">
+            <button className ="button is-success" onClick = {() => 
+              {
+                setSaveStatus(0) 
+                setSaveFlag(!saveFlag)
+              }
+            }>Save changes</button>
+            <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
+          </div>
+          <div className = "buttons is-centered">
+            <button className ="button is-primary" onClick = {() => {
+              if (index > 0) {
+                setIndex(index - 1)
+              }
+              }}>Prev</button>
+            <button className ="button is-primary" onClick = {postAPI}>Create New Syllabus</button>
+            <button className ="button is-primary" onClick = {() => {
+              if (index < calendarAPI.length - 1) {
+                setIndex(index + 1)
+              }
+              }}>Next</button>
+          </div>  
+          <div className = "buttons is-centered">
+            <button className = "button is-success" onClick = {scrollToTop}>Back to Top</button>
+            <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
+          </div>          
+        </footer>
+      )
     }
     return (
       <footer className ="footer">
@@ -217,5 +225,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
