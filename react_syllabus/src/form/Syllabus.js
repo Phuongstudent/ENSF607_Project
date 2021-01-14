@@ -3,7 +3,7 @@ import React from "react";
 export default function SyllabusTable(props){
     const {syllabusArray, setPageIndex} = props
 
-    const selectPage = index => {
+    const selectPage = index => () => {
         console.log(index)
         setPageIndex(index);
     } 
@@ -31,7 +31,6 @@ export default function SyllabusTable(props){
                             <td>
                                 <button className = "button is-success" onClick = {selectPage(index)}>Select</button> 
                             </td>
-
                         </tr>
                     ))}
                 </tbody>

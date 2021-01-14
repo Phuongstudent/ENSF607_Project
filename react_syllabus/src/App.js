@@ -23,17 +23,13 @@ export default function App() {
   const calendar = url + "calendar/"
   const learning = url + "learning/"
   const grades = url + "grades/"
-  const syllabus = url + "syllabustable/"
 
-  const[syllabusAPI, setSyllabusAPI] = useState("")
   const [calendarAPI, setCalendarAPI] = useState([])
   const [learningAPI, setLearningAPI] = useState("")
   const [gradesAPI, setGradesAPI] = useState("")
   const [saveStatus, setSaveStatus] = useState(1)
   const [index, setIndex] = useState(0)
-  console.log(index)
 
-  const [syllabusData, setSyllabusData] = useState("")
   const [calendarData, setCalendarData] = useState("")
   const [learningData, setLearningData] = useState("")
   const [gradesData, setGradesData] = useState("")
@@ -43,10 +39,6 @@ export default function App() {
   // GET API, update data upon change of index
   useEffect(() => {
     const fetchData = async() => {
-
-      await axios.get(syllabus)
-        .then(response => setSyllabusAPI(response.data))
-        .catch(() => console.error("API Error"));
 
       await axios.get(calendar)
         .then(response => setCalendarAPI(response.data))
@@ -61,7 +53,7 @@ export default function App() {
         .catch(() => console.error("API Error"));
     }
     fetchData()
-  }, [calendar, learning, grades, syllabus, queryFlag])
+  }, [calendar, learning, grades, queryFlag])
 
   useEffect(() => {
     setCalendarData(calendarAPI[index])
@@ -74,11 +66,6 @@ export default function App() {
   useEffect(() => {
     setGradesData(gradesAPI[index])
   }, [index, gradesAPI])
-
-  useEffect(() => {
-    setSyllabusData(syllabusAPI)
-  }, [index, syllabusAPI])
-
 
   // COURSE INFORMATION
   const [courseCode, setCourseCode] = useState("");
@@ -288,46 +275,12 @@ export default function App() {
   }
   }, [gradesData])
 
-
-  //Syllabus Table
-  const [syllabusArray, setSyllabusArray] = useState([
-    {syllabusName: " ", syllabusNumber: 0}
-]);
-
-useEffect(() => {       
-  if (!syllabusData) {
-      setSyllabusArray([{syllabusName: " ", syllabusNumber: 0}])
-  }
-  else {
-      
-      let temp = syllabusData
-      let tempSyllabusArray = []
-      for (let i = 0; i < temp.length; i++){
-          let tempIndex = temp[i]
-          tempSyllabusArray = ([...tempSyllabusArray, 
-              {
-                  
-                  syllabusName: tempIndex.syllabus_name,
-                  syllabusNumber: tempIndex.syllabus_number
-             
-              }
-          ]);
-      }
-      setSyllabusArray(tempSyllabusArray)
-  }
-}, [syllabusData])
-
-
   // POST and PUT API, export to PDF
   const exportToPDF = () => {
     console.log("EXPORT TO PDF FUNCTION")
   }
 
   const postAPI = () => {
-    axios.post(syllabus, {
-      syllabus_name: 'test',
-      syllabus_number: calendarAPI.length
-     })
      axios.post(calendar, {
        course_code: '',
        course_title: '',
@@ -391,7 +344,6 @@ useEffect(() => {
         putLearningOutcomes += "%outcome%"
       }
     }
-
 
     let putContentMath = ""
     let putContentNat = ""
@@ -485,22 +437,6 @@ useEffect(() => {
         grade_marks: putGradeText
       }
     )
-
-    //Syllabus Table
-    let putSyllabusNumber = 0;
-    let putSyllabusName = courseCode;
-
-    
-    
-    putAPI(
-      syllabusData.url.split("/")[5], //Why is it 5?
-      syllabus,
-      {
-        syllabusNumber : putSyllabusNumber,
-        syllabusName : putSyllabusName,
-      }
-    )
-
 
     setQueryFlag(!queryFlag)
     setSaveStatus(1)
