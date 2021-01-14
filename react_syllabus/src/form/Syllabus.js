@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useRef} from "react";
 
 export default function SyllabusTable(props){
-    const {syllabusArray, setSyllabusArray, pageIndex, setPageIndex} = props
+    const {syllabusArray, setPageIndex} = props
 
     const selectPage = (index) => {
-        let temp = Number(syllabusArray[index].syllabusNumber);
+        let temp = Number(syllabusArray[index].course_code);
         setPageIndex(temp);
     } 
 
@@ -27,10 +27,10 @@ export default function SyllabusTable(props){
                     <tr key = {index}>
                        
                         <td>
-                            {syllabus.syllabusNumber}
+                            {index}
                         </td>
                         <td>
-                            {syllabus.syllabusName}  
+                            {syllabus.course_code}  
                         </td>
                         <td>
                     

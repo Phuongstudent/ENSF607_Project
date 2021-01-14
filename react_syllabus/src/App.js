@@ -86,10 +86,7 @@ export default function App() {
       } 
       else {
         return <SyllabusTable 
-        syllabusArray = {syllabusArray}
-        setSyllabusArray = {setSyllabusArray}
-        saveIndex = {8}
-        pageIndex = {index}
+        syllabusArray = {calendarAPI}
         setPageIndex = {setIndex}/>;
       }
 
