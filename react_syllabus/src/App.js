@@ -637,15 +637,71 @@ useEffect(() => {
   }
 
   return (
-    <div>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></link>
+    <section class="hero is-light is-small">
 
-      <Header/>
-      {renderChoice()}
-      {renderSaveButton()}
+            <div class="hero-head is-large">
+                <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                    <a class="navbar-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/University_of_Calgary_Logo.svg/220px-University_of_Calgary_Logo.svg.png" alt="Logo" ></img>
+                    </a>
+                    <span class="navbar-burger" data-target="navbarMenuHeroA">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    </div>
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a 
+                        onClick={() => {
+                            setPage("CourseInformation")
+                        }}
+                        class="navbar-item ${isActive ? 'is-active' : ''}">
+                        Course Information
+                        </a>
+                        <a 
+                         onClick={() => {
+                            setPage("LearningOutcomes")
+                        }}
+                        class="navbar-item">
+                        Learning Outcomes
+                        </a>
+                        <a 
+                         onClick={() => {
+                            setPage("FinalGradeDetermination")
+                        }}
+                        class="navbar-item">
+                        Final Grade Determination
+                        </a>
+                      
+                    </div>
+                    </div>
+                </div>
+                </nav>
+            </div>
 
-      {/* <Navigation/> */}
 
-    </div>
+            <div class="hero-body">
+                <div class="container has-text-start">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></link>
+                {/* <Header/> */}
+                    {renderChoice()}
+                    {renderSaveButton()}
+                </div>
+            </div>
+        </section>
+        
+    // <div>
+    //   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></link>
+
+    //   <Header/>
+    //   {renderChoice()}
+    //   {renderSaveButton()}
+
+    //   {/* <Navigation/> */}
+
+    // </div>
   );
 }
