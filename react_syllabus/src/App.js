@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+
+
 
 import Header from "./login/Header";
 import CourseInformation from "./form/CourseInformation";
@@ -19,6 +22,38 @@ import SyllabusTable from "./form/Syllabus";
 import "./App.css"
 
 export default function App() {
+
+
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: 'row',
+      backgroundColor: '#E4E4E4'
+    },
+    section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1
+    }
+  });
+  
+  // Create Document Component
+  const MyDocument = () => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          <Text>Section #1</Text>
+        </View>
+        <View style={styles.section}>
+          <Text>Section #2</Text>
+        </View>
+      </Page>
+    </Document>
+  );
+
+
+
+
+
   const url = "http://localhost:8000/api/"
   const calendar = url + "calendar/"
   const learning = url + "learning/"
@@ -634,4 +669,7 @@ export default function App() {
 
     // </div>
   );
+
+
+  
 }
