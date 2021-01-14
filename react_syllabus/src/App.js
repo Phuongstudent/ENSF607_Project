@@ -19,93 +19,19 @@ import SyllabusTable from "./form/Syllabus";
 import "./App.css"
 
 export default function App() {
-
-  const [page, setPage] = React.useState("")
-  const renderChoice = () => {
-      if (page === "CourseInformation"){
-          return <CourseInformation 
-          courseCode = {courseCode}
-          setCourseCode = {setCourseCode}
-          courseTitle = {courseTitle}
-          setCourseTitle = {setCourseTitle}
-          courseDescription = {courseDescription}
-          setCourseDescription = {setCourseDescription}
-          courseHours = {courseHours}
-          setCourseHours = {setCourseHours}
-          academicCredit = {academicCredit}
-          setAcademicCredit = {setAcademicCredit}
-          calendarReference = {calendarReference}
-          setCalendarReference = {setCalendarReference}
-          saveIndex = {0}
-        /> ;
-      } else if (page === "LearningOutcomes"){
-          return <div><LearningOutcomes 
-          learningOutcomes = {learningOutcomes}
-          setLearningOutcomes = {setLearningOutcomes}
-          saveIndex = {1}
-        /><LearningGraduateTable/>
-        <LearningLevelTable/>
-        <CourseContentCategories
-          courseCategory = {courseCategory}
-          setCourseCategory = {setCourseCategory}
-          saveIndex = {2}
-        />
-        <CourseSectionInformation
-          courseSection = {courseSection}
-          setCourseSection = {setCourseSection}
-          saveIndex = {3}
-        />
-        <LaboratoryExperience 
-          labType = {labType}
-          setLabType = {setLabType}
-          labNumber = {labNumber}
-          setLabNumber = {setLabNumber}
-          safetyTaught = {safetyTaught}
-          setSafetyTaught = {setSafetyTaught}
-          safetyExamined = {safetyExamined}
-          setSafetyExamined = {setSafetyExamined}
-          saveIndex = {4}
-        /></div>;
-      } 
-      else if(page === "FinalGradeDetermination"){
-        return <div><FinalGradeDetermination
-        gradeRows = {gradeRows}
-        setGradeRows = {setGradeRows}
-        saveIndex = {5}
-      />
-      <FinalGradeNotes  
-        gradeNotes = {gradeNotes}
-        setGradeNotes = {setGradeNotes}
-        saveIndex = {6}
-      />
-      <FinalGradeMarks 
-        finalGradeText = {finalGradeText}
-        setFinalGradeText = {setFinalGradeText}
-        saveIndex = {7}
-      /></div>
-      } 
-      else {
-        return <SyllabusTable 
-        syllabusArray = {calendarAPI}
-        setPageIndex = {setIndex}/>;
-      }
-
-  }
-
-
   const url = "http://localhost:8000/api/"
   const calendar = url + "calendar/"
   const learning = url + "learning/"
   const grades = url + "grades/"
   const syllabus = url + "syllabustable/"
 
-
   const[syllabusAPI, setSyllabusAPI] = useState("")
-  const [calendarAPI, setCalendarAPI] = useState("")
+  const [calendarAPI, setCalendarAPI] = useState([])
   const [learningAPI, setLearningAPI] = useState("")
   const [gradesAPI, setGradesAPI] = useState("")
   const [saveStatus, setSaveStatus] = useState(1)
   const [index, setIndex] = useState(0)
+  console.log(index)
 
   const [syllabusData, setSyllabusData] = useState("")
   const [calendarData, setCalendarData] = useState("")
@@ -596,6 +522,77 @@ useEffect(() => {
     });
   }
 
+  const [page, setPage] = React.useState("")
+  const renderChoice = () => {
+      if (page === "CourseInformation"){
+          return <CourseInformation 
+          courseCode = {courseCode}
+          setCourseCode = {setCourseCode}
+          courseTitle = {courseTitle}
+          setCourseTitle = {setCourseTitle}
+          courseDescription = {courseDescription}
+          setCourseDescription = {setCourseDescription}
+          courseHours = {courseHours}
+          setCourseHours = {setCourseHours}
+          academicCredit = {academicCredit}
+          setAcademicCredit = {setAcademicCredit}
+          calendarReference = {calendarReference}
+          setCalendarReference = {setCalendarReference}
+          saveIndex = {0}
+        /> ;
+      } else if (page === "LearningOutcomes"){
+          return <div><LearningOutcomes 
+          learningOutcomes = {learningOutcomes}
+          setLearningOutcomes = {setLearningOutcomes}
+          saveIndex = {1}
+        /><LearningGraduateTable/>
+        <LearningLevelTable/>
+        <CourseContentCategories
+          courseCategory = {courseCategory}
+          setCourseCategory = {setCourseCategory}
+          saveIndex = {2}
+        />
+        <CourseSectionInformation
+          courseSection = {courseSection}
+          setCourseSection = {setCourseSection}
+          saveIndex = {3}
+        />
+        <LaboratoryExperience 
+          labType = {labType}
+          setLabType = {setLabType}
+          labNumber = {labNumber}
+          setLabNumber = {setLabNumber}
+          safetyTaught = {safetyTaught}
+          setSafetyTaught = {setSafetyTaught}
+          safetyExamined = {safetyExamined}
+          setSafetyExamined = {setSafetyExamined}
+          saveIndex = {4}
+        /></div>;
+      } 
+      else if(page === "FinalGradeDetermination"){
+        return <div><FinalGradeDetermination
+        gradeRows = {gradeRows}
+        setGradeRows = {setGradeRows}
+        saveIndex = {5}
+      />
+      <FinalGradeNotes  
+        gradeNotes = {gradeNotes}
+        setGradeNotes = {setGradeNotes}
+        saveIndex = {6}
+      />
+      <FinalGradeMarks 
+        finalGradeText = {finalGradeText}
+        setFinalGradeText = {setFinalGradeText}
+        saveIndex = {7}
+      /></div>
+      } 
+      else {
+        return <SyllabusTable 
+        syllabusArray = {calendarAPI}
+        setPageIndex = {setIndex}/>;
+      }
+  }
+
   const renderSaveButton = () => {
     if (saveStatus === 1) {
       return (
@@ -634,42 +631,42 @@ useEffect(() => {
   }
 
   return (
-    <section class="hero is-light is-small">
+    <section className="hero is-light is-small">
 
-            <div class="hero-head is-large">
-                <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                    <a class="navbar-item">
+            <div className="hero-head is-large">
+                <nav className="navbar">
+                <div className="container">
+                    <div className="navbar-brand">
+                    <a className="navbar-item">
                         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/University_of_Calgary_Logo.svg/220px-University_of_Calgary_Logo.svg.png" alt="Logo" ></img>
                     </a>
-                    <span class="navbar-burger" data-target="navbarMenuHeroA">
+                    <span className="navbar-burger" data-target="navbarMenuHeroA">
                         <span></span>
                         <span></span>
                         <span></span>
                     </span>
                     </div>
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                    <div class="navbar-start">
+                    <div id="navbarMenuHeroA" className="navbar-menu">
+                    <div className="navbar-start">
                         <a 
                         onClick={() => {
                             setPage("CourseInformation")
                         }}
-                        class="navbar-item ${isActive ? 'is-active' : ''}">
+                        className="navbar-item ${isActive ? 'is-active' : ''}">
                         Course Information
                         </a>
                         <a 
                          onClick={() => {
                             setPage("LearningOutcomes")
                         }}
-                        class="navbar-item">
+                        className="navbar-item">
                         Learning Outcomes
                         </a>
                         <a 
                          onClick={() => {
                             setPage("FinalGradeDetermination")
                         }}
-                        class="navbar-item">
+                        className="navbar-item">
                         Final Grade Determination
                         </a>
                       
@@ -680,8 +677,8 @@ useEffect(() => {
             </div>
 
 
-            <div class="hero-body">
-                <div class="container has-text-start">
+            <div className="hero-body">
+                <div className="container has-text-start">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></link>
                 {/* <Header/> */}
                     {renderChoice()}
