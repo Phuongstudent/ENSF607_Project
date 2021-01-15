@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import Pdf from "react-to-pdf";
 
 
 
@@ -20,35 +20,35 @@ import SyllabusTable from "./form/Syllabus";
 // import Navigation from "./Navigation";
 
 import "./App.css"
-
+const ref = React.createRef();
 export default function App() {
 
 
-  const styles = StyleSheet.create({
-    page: {
-      flexDirection: 'row',
-      backgroundColor: '#E4E4E4'
-    },
-    section: {
-      margin: 10,
-      padding: 10,
-      flexGrow: 1
-    }
-  });
+  // const styles = StyleSheet.create({
+  //   page: {
+  //     flexDirection: 'row',
+  //     backgroundColor: '#E4E4E4'
+  //   },
+  //   section: {
+  //     margin: 10,
+  //     padding: 10,
+  //     flexGrow: 1
+  //   }
+  // });
   
-  // Create Document Component
-  const MyDocument = () => (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text>Section #1</Text>
-        </View>
-        <View style={styles.section}>
-          <Text>Section #2</Text>
-        </View>
-      </Page>
-    </Document>
-  );
+  // // Create Document Component
+  // const MyDocument = () => (
+  //   <Document>
+  //     <Page size="A4" style={styles.page}>
+  //       <View style={styles.section}>
+  //         <Text>Section #1</Text>
+  //       </View>
+  //       <View style={styles.section}>
+  //         <Text>Section #2</Text>
+  //       </View>
+  //     </Page>
+  //   </Document>
+  // );
 
 
 
@@ -556,7 +556,11 @@ export default function App() {
         setFinalGradeText = {setFinalGradeText}
         saveIndex = {7}
       /></div>
-      } 
+      } else if (page === "Syllabus"){
+        return <SyllabusTable 
+        syllabusArray = {calendarAPI}
+        setPageIndex = {setIndex}/>;
+      }
       else {
         return <SyllabusTable 
         syllabusArray = {calendarAPI}
@@ -570,7 +574,10 @@ export default function App() {
         <footer className ="footer">
           <div className = "buttons is-centered">
             <button className ="button is-success" onClick = {saveButton}>Save changes</button>
-            <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
+            {/* <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button> */}
+            <Pdf targetRef={ref} filename="PDF-Exported.pdf">
+              {({ toPdf }) => <button className = "button is-success" onClick = {toPdf}>Export to PDF</button>}
+            </Pdf>
           </div>
           <div className = "buttons is-centered">
             <button className ="button is-primary" onClick = {() => {
@@ -587,7 +594,9 @@ export default function App() {
           </div>  
           <div className = "buttons is-centered">
             <button className = "button is-success" onClick = {scrollToTop}>Back to Top</button>
-            <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button>
+            <Pdf targetRef={ref} filename="PDF-Exported.pdf">
+              {({ toPdf }) => <button className = "button is-success" onClick = {toPdf}>Export to PDF</button>}
+            </Pdf>
           </div>          
         </footer>
       )
@@ -619,6 +628,13 @@ export default function App() {
                     </div>
                     <div id="navbarMenuHeroA" className="navbar-menu">
                     <div className="navbar-start">
+                    <a 
+                        onClick={() => {
+                            setPage("Syllabus")
+                        }}
+                        className="navbar-item ${isActive ? 'is-active' : ''}">
+                        Syllabus
+                        </a>
                         <a 
                         onClick={() => {
                             setPage("CourseInformation")
@@ -652,8 +668,11 @@ export default function App() {
                 <div className="container has-text-start">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></link>
                 {/* <Header/> */}
-                    {renderChoice()}
-                    {renderSaveButton()}
+                      <div ref={ref}> 
+                      {renderChoice()}
+                      </div>
+                      {renderSaveButton()}
+                  
                 </div>
             </div>
         </section>
