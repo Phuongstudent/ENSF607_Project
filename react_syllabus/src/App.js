@@ -23,37 +23,6 @@ import "./App.css"
 const ref = React.createRef();
 export default function App() {
 
-
-  // const styles = StyleSheet.create({
-  //   page: {
-  //     flexDirection: 'row',
-  //     backgroundColor: '#E4E4E4'
-  //   },
-  //   section: {
-  //     margin: 10,
-  //     padding: 10,
-  //     flexGrow: 1
-  //   }
-  // });
-  
-  // // Create Document Component
-  // const MyDocument = () => (
-  //   <Document>
-  //     <Page size="A4" style={styles.page}>
-  //       <View style={styles.section}>
-  //         <Text>Section #1</Text>
-  //       </View>
-  //       <View style={styles.section}>
-  //         <Text>Section #2</Text>
-  //       </View>
-  //     </Page>
-  //   </Document>
-  // );
-
-
-
-
-
   const url = "http://localhost:8000/api/"
   const calendar = url + "calendar/"
   const learning = url + "learning/"
@@ -74,7 +43,6 @@ export default function App() {
   // GET API, update data upon change of index
   useEffect(() => {
     const fetchData = async() => {
-
       await axios.get(calendar)
         .then(response => setCalendarAPI(response.data))
         .catch(() => console.error("API Error"));
@@ -509,24 +477,20 @@ export default function App() {
           setAcademicCredit = {setAcademicCredit}
           calendarReference = {calendarReference}
           setCalendarReference = {setCalendarReference}
-          saveIndex = {0}
         /> ;
       } else if (page === "LearningOutcomes"){
           return <div><LearningOutcomes 
           learningOutcomes = {learningOutcomes}
           setLearningOutcomes = {setLearningOutcomes}
-          saveIndex = {1}
         /><LearningGraduateTable/>
         <LearningLevelTable/>
         <CourseContentCategories
           courseCategory = {courseCategory}
           setCourseCategory = {setCourseCategory}
-          saveIndex = {2}
         />
         <CourseSectionInformation
           courseSection = {courseSection}
           setCourseSection = {setCourseSection}
-          saveIndex = {3}
         />
         <LaboratoryExperience 
           labType = {labType}
@@ -537,24 +501,20 @@ export default function App() {
           setSafetyTaught = {setSafetyTaught}
           safetyExamined = {safetyExamined}
           setSafetyExamined = {setSafetyExamined}
-          saveIndex = {4}
         /></div>;
       } 
       else if(page === "FinalGradeDetermination"){
         return <div><FinalGradeDetermination
         gradeRows = {gradeRows}
         setGradeRows = {setGradeRows}
-        saveIndex = {5}
       />
       <FinalGradeNotes  
         gradeNotes = {gradeNotes}
         setGradeNotes = {setGradeNotes}
-        saveIndex = {6}
       />
       <FinalGradeMarks 
         finalGradeText = {finalGradeText}
         setFinalGradeText = {setFinalGradeText}
-        saveIndex = {7}
       /></div>
       } else if (page === "Syllabus"){
         return <SyllabusTable 
@@ -574,7 +534,6 @@ export default function App() {
         <footer className ="footer">
           <div className = "buttons is-centered">
             <button className ="button is-success" onClick = {saveButton}>Save changes</button>
-            {/* <button className = "button is-success" onClick = {exportToPDF}>Export to PDF</button> */}
             <Pdf targetRef={ref} filename="PDF-Exported.pdf">
               {({ toPdf }) => <button className = "button is-success" onClick = {toPdf}>Export to PDF</button>}
             </Pdf>
@@ -584,19 +543,16 @@ export default function App() {
               if (index > 0) {
                 setIndex(index - 1)
               }
-              }}>Prev</button>
+              }}>Prev Syllabus</button>
             <button className ="button is-primary" onClick = {postAPI}>Create New Syllabus</button>
             <button className ="button is-primary" onClick = {() => {
               if (index < calendarAPI.length - 1) {
                 setIndex(index + 1)
               }
-              }}>Next</button>
+              }}>Next Syllabus</button>
           </div>  
           <div className = "buttons is-centered">
             <button className = "button is-success" onClick = {scrollToTop}>Back to Top</button>
-            <Pdf targetRef={ref} filename="PDF-Exported.pdf">
-              {({ toPdf }) => <button className = "button is-success" onClick = {toPdf}>Export to PDF</button>}
-            </Pdf>
           </div>          
         </footer>
       )
